@@ -249,6 +249,16 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   overflow: visible;
 }
 
+.hero-club-name {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  color: var(--text-head);
+  letter-spacing: -.01em;
+  line-height: 1;
+}
+.hero-club-name span { color: var(--amber); }
+
 .hero-badge {
   display: inline-flex; align-items: center; gap: .5rem;
   background: rgba(245,196,56,.08);
@@ -995,11 +1005,6 @@ footer {
             <stop offset="70%"  stop-color="#F5C438" stop-opacity="0.04"/>
             <stop offset="100%" stop-color="#F5C438" stop-opacity="0"/>
           </radialGradient>
-          <!-- Filament gradient -->
-          <linearGradient id="filGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stop-color="#F5C438" stop-opacity="0.9"/>
-            <stop offset="100%" stop-color="#F5C438" stop-opacity="0.3"/>
-          </linearGradient>
         </defs>
 
         <!-- ① Outer ambient glow pulse -->
@@ -1041,17 +1046,6 @@ footer {
           stroke="rgba(255,255,255,0.22)" stroke-width="2" fill="none"
           stroke-linecap="round"/>
 
-        <!-- ④ Filament (W-shape inside bulb) -->
-        <path d="M 50 64 L 53 56 L 57 62 L 60 54 L 63 62 L 67 56 L 70 64"
-          stroke="url(#filGrad)" stroke-width="1.4" fill="none"
-          stroke-linecap="round" stroke-linejoin="round">
-          <animate attributeName="opacity" values="0.7;1;0.7" dur="2s" repeatCount="indefinite"
-            calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1"/>
-        </path>
-        <!-- Filament support stems -->
-        <line x1="55" y1="65" x2="55" y2="70" stroke="rgba(245,196,56,0.4)" stroke-width="1" stroke-linecap="round"/>
-        <line x1="65" y1="65" x2="65" y2="70" stroke="rgba(245,196,56,0.4)" stroke-width="1" stroke-linecap="round"/>
-
         <!-- ⑤ Rotating teal gear — counter-clockwise, SMIL rotate around gear center (60,47) -->
         <g filter="url(#tglow)">
           <animateTransform attributeName="transform" type="rotate"
@@ -1088,6 +1082,11 @@ footer {
           <animate attributeName="opacity" values="0.35;0.08;0.35" dur="3s" repeatCount="indefinite"/>
         </rect>
       </svg>
+    </div>
+
+    <!-- Club name -->
+    <div class="hero-club-name rv rv-delay-1">
+      <span>Innovation</span> Club
     </div>
 
     <!-- Badge -->
