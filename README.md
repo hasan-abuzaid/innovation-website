@@ -4,12 +4,18 @@ A six-page static website for Innovation Club at German Jordanian University. Bu
 
 ## Pages
 
-- `index.html`: Home, About, Vision and Mission, What We Do, and Join Us.
-- `team.html`: Founder, Our People, Our New Members, Past President, and Past Members, in that order.
-- `events.html`: the five existing past events.
-- `programs.html`: Expert on Campus, hackathons, and field trips.
-- `archive.html`: Photo Archive with eight real photographs, concise titles/captions, and an optional lightbox.
-- `past-members-messages.html`: the authentic message from Etedal Ereiqat (Lala), with an inert reusable card template for more real, approved messages.
+- `/` (`index.html`): Home, About, Vision and Mission, What We Do, and Join Us.
+- `/team/` (`team/index.html`): shared Founder and Past President feature, Our People, Our New Members, and Past Members, in that order.
+- `/events/` (`events/index.html`): the five existing past events.
+- `/programs/` (`programs/index.html`): Expert on Campus, hackathons, and field trips.
+- `/archive/` (`archive/index.html`): Photo Archive with eight real photographs, concise titles/captions, and an optional lightbox.
+- `/past-members-messages/` (`past-members-messages/index.html`): the authentic message from Etedal Ereiqat (Lala), with an inert reusable card template for more real, approved messages.
+
+## Clean URLs and compatibility
+
+GitHub Pages serves the `index.html` inside each directory. Keep the trailing slash in links: `/`, `/team/`, `/events/`, `/programs/`, `/archive/`, and `/past-members-messages/`. Internal page links and asset references start at the site root, so they work from every page directory on the existing custom domain. Canonical and Open Graph URLs use these clean routes.
+
+The old `team.html`, `events.html`, `programs.html`, `archive.html`, and `past-members-messages.html` files are lightweight compatibility redirects. They contain a canonical link, a meta refresh, a JavaScript `location.replace` that carries the query string and fragment to the clean route, and a normal fallback link. GitHub Pages serves these files with HTTP 200; they are HTML redirects, not server-side 301 redirects. Keep them for old bookmarks and event anchors. The homepage also conditionally redirects an explicit `/index.html` visit to `/`, preserving its query and fragment; visiting `/` does not redirect. Without JavaScript, `/index.html` still displays the homepage with `/` as its canonical URL.
 
 ## Structure
 
@@ -26,7 +32,7 @@ A six-page static website for Innovation Club at German Jordanian University. Bu
 
 ## Local preview
 
-Open `index.html` in a browser and follow the navigation links. The six pages also work directly through file URLs. Google Fonts requires an internet connection; system font fallbacks are provided.
+Serve the repository root over local HTTP and follow the clean routes above. Opening files directly with `file://` is not supported because links and shared asset paths start at `/`. Google Fonts requires an internet connection; system font fallbacks are provided.
 
 If Python is already installed, an optional local HTTP server can be started from this directory:
 
@@ -50,7 +56,7 @@ Home displays 25+ Current members, 5+ Operational teams, and 3 Core program form
 
 ## Leadership photographs
 
-The real supplied photographs are connected to the existing cards in team.html:
+The real supplied photographs are connected to the existing cards in team/index.html:
 
 | Person | Original photograph, retained | Display variants |
 | --- | --- | --- |
@@ -67,28 +73,32 @@ To replace a portrait later, retain its original, optimize proportionally, updat
 
 1. Use an approved real photograph and retain its original. Do not infer an event date or other details from file metadata.
 2. Reuse an existing optimized asset if the photo is already on Events or another page. For a new photo, use assets/images/archive/ with a descriptive lowercase filename. Produce proportionally resized versions, such as 640px and 1600px, without changing people or cropping faces.
-3. Copy one figure.archive-card from archive.html. Set a unique figure id, a factual title/caption, descriptive alt, actual image dimensions, srcset widths, and a sizes value that matches the gallery.
+3. Copy one figure.archive-card from archive/index.html. Set a unique figure id, a factual title/caption, descriptive alt, actual image dimensions, srcset widths, and a sizes value that matches the gallery.
 4. The div.archive-photo-frame stores the larger image path in data-photo-src. Keep data-lightbox, data-photo-title, and an optional concise data-photo-caption. JavaScript upgrades the frame to a semantic button when native dialog is supported. Without JavaScript or dialog support, real images and captions remain a readable static gallery. Do not add raw-image anchors or visible file-opening links.
-5. Add only selected previews to Home. Preview links go to archive.html#the-photo-id; do not duplicate the entire gallery on Home or Our Team.
+5. Add only selected previews to Home. Preview links go to /archive/#the-photo-id; do not duplicate the entire gallery on Home or Our Team.
 
 The current archive has eight unique photos: Vivid Leadership Conference; Career Fair 2026; Passionate Innovators; EoC: Hisham Abubaker; Madaba Innovation Trail; Industrial Partnership Conference 2025; EoC: Eng. Salah Aloqabi; and one original club group photograph. Only the two newly supplied event photos need new archive assets; existing event and team variants are reused.
 
 ## Adding real messages from past members
 
-The first authentic message is from Etedal Ereiqat (Lala), a Past Member. Its supplied wording, punctuation, emojis, capitalization, and three paragraphs are preserved exactly. No photo, team, year, or date has been inferred. The template in past-members-messages.html is inert and has no names, quotes, or made-up text. No form, account, backend, database, or CMS is used.
+The first authentic message is from Etedal Ereiqat (Lala), a Past Member. Its supplied wording, punctuation, emojis, capitalization, and three paragraphs are preserved exactly. No photo, team, year, or date has been inferred. The template in past-members-messages/index.html is inert and has no names, quotes, or made-up text. No form, account, backend, database, or CMS is used.
 
 1. Obtain the person's real message and approval to publish it, together with the name they want shown. Verify any previous role, photo, or date separately; omit unknown fields.
-2. In past-members-messages.html, copy the article inside template#past-member-message-template into div#member-messages. It becomes ordinary static HTML; no JavaScript data rendering is needed.
+2. In past-members-messages/index.html, copy the article inside template#past-member-message-template into div#member-messages. It becomes ordinary static HTML; no JavaScript data rendering is needed.
 3. Fill h3[data-message-name] with the real name and the paragraphs inside blockquote[data-message-text] with the approved message. Preserve every character and the supplied paragraph breaks exactly; escape HTML-sensitive characters where necessary. Do not rewrite, shorten, or add quotation marks.
 4. Optional fields remain hidden until provided. For a verified previous role, fill p[data-message-role] and remove hidden. For an approved real portrait, add a valid src, actual width/height, and remove hidden from img[data-message-photo]. The adjacent name identifies the decorative photo, so alt can remain empty.
 5. For a verified date, fill time[data-message-date], set datetime to the real ISO date, and remove hidden. Do not use a guessed date.
 6. The empty state has been removed now that a real message is present. Keep the permanent section heading, message grid, and reusable template. Never publish the unfilled card as visible content.
 
+## Clean-URL verification
+
+The clean-URL migration is verified by static HTML/path/anchor checks and ordinary HTTP requests. No browser automation, visual browser testing, screenshots, or test-artifact files are generated for this migration. CSS, JavaScript, images, approved page text, membership data, and the authentic member message remain unchanged.
+
 ## Local review checklist
 
-Real Brave browser testing through Playwright MCP covered all six pages at 320x720, 375x812, 390x844, 430x932, 768x1024, 1280x800, and 1920x1080. Local screenshots and browser output stay in the ignored `.playwright-mcp/` folder. See `docs/release-review.md` for the final checks and their limits. The steps below are also useful when reviewing later edits.
+Historical testing before the clean-URL migration: real Brave browser testing through Playwright MCP covered all six pages at 320x720, 375x812, 390x844, 430x932, 768x1024, 1280x800, and 1920x1080. Local screenshots and browser output stay in the ignored `.playwright-mcp/` folder. See `docs/release-review.md` for the final checks and their limits. The steps below are also useful when reviewing later edits.
 
-1. Open index.html, team.html, events.html, programs.html, archive.html, and past-members-messages.html directly; test header and footer links and active page indicators.
+1. Serve the repository root locally and visit /, /team/, /events/, /programs/, /archive/, and /past-members-messages/; test header and footer links and active page indicators.
 2. At 1280px and 1920px widths, open Archive by click and by Enter/Space. It opens instantly, without scaling, sliding, or rotation. Confirm aria-expanded tracks the native details state and aria-controls points to archive-menu. Tab into both links. ArrowDown/ArrowUp on its summary focuses the first/last link. Escape closes the dropdown and returns focus to Archive. Click outside and move focus outside to close it.
 3. At 320px, 360px, 375px, 390px, 430px, and 768px widths, open the main navigation, open Archive, and follow each link. Escape closes Archive first and the mobile list second. Expand the list in landscape and confirm it scrolls within the viewport. Test resizing across the 900/901px navigation breakpoint, including while focus is inside Archive. Focus should move to Archive on desktop or the hamburger on mobile when the submenu closes.
 4. Inspect all four named portraits at 390px and 1280px. Faces and whole photographs must remain visible and roles unchanged. Check eight gallery cards and the full-width amber active-navigation border at 320px, 360px, 375px, 390px, 430px, 768px, 1024px, 1280px, and 1920px for clipping or horizontal overflow. Archive must be active on both archive-related pages.

@@ -3,6 +3,11 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+      if (window.location.pathname === '/index.html') {
+        window.location.replace('/' + window.location.search + window.location.hash);
+      }
+    </script>
     <title>
       Where Ideas Become Impact · Innovation Club · GJU
     </title>
@@ -17,13 +22,13 @@
     <meta property="og:image" content="https://innovationclub.online/assets/images/brand/logo.png">
     <meta property="og:image:alt" content="Innovation Club logo">
     <meta name="twitter:card" content="summary_large_image">
-    <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
-    <link rel="icon" href="assets/images/brand/logo.png" type="image/png">
+    <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/assets/images/brand/logo.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&amp;family=DM+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
-    <script src="js/main.js" defer>
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="/js/main.js" defer>
     </script>
   </head>
   <body>
@@ -32,8 +37,8 @@
     </a>
     <header class="site-header">
       <nav class="nav-shell container" aria-label="Main navigation">
-        <a class="brand" href="index.html">
-          <img src="assets/images/brand/logo.png" alt="" width="40" height="40">
+        <a class="brand" href="/">
+          <img src="/assets/images/brand/logo.png" alt="" width="40" height="40">
           <span>
             <strong>
               Innovation
@@ -49,22 +54,22 @@
         </button>
         <ul class="nav-links" id="primary-navigation">
           <li>
-            <a href="index.html" aria-current="page">
+            <a href="/" aria-current="page">
               Home
             </a>
           </li>
           <li>
-            <a href="team.html">
+            <a href="/team/">
               Our Team
             </a>
           </li>
           <li>
-            <a href="events.html">
+            <a href="/events/">
               Events
             </a>
           </li>
           <li>
-            <a href="programs.html">
+            <a href="/programs/">
               Programs
             </a>
           </li>
@@ -72,13 +77,13 @@
             <details class="nav-archive">
               <summary aria-controls="archive-menu">Archive</summary>
               <ul class="archive-menu" id="archive-menu">
-                <li><a href="archive.html">Photo Archive</a></li>
-                <li><a href="past-members-messages.html">Messages from Past Members</a></li>
+                <li><a href="/archive/">Photo Archive</a></li>
+                <li><a href="/past-members-messages/">Messages from Past Members</a></li>
               </ul>
             </details>
           </li>
           <li>
-            <a class="button button-primary" href="index.html#join">
+            <a class="button button-primary" href="/#join">
               Join Us
               <span aria-hidden="true">
                 ↗
@@ -111,7 +116,7 @@
                     ↗
                   </span>
                 </a>
-                <a class="button button-secondary" href="programs.html">
+                <a class="button button-secondary" href="/programs/">
                   Explore our programs
                   <span aria-hidden="true">
                     →
@@ -334,7 +339,7 @@
                   </dd>
                 </div>
               </dl>
-              <a class="text-link" href="team.html">
+              <a class="text-link" href="/team/">
                 Meet our people
                 <span aria-hidden="true">
                   →
@@ -467,7 +472,7 @@
                 A look at the experiences we create together.
               </p>
             </div>
-            <a class="text-link" href="events.html">
+            <a class="text-link" href="/events/">
               Explore our events
               <span aria-hidden="true">
                 →
@@ -475,7 +480,7 @@
             </a>
           </div>
           <article class="feature-story reveal">
-            <img src="assets/images/events/passionate-innovators-640.jpg" srcset="assets/images/events/passionate-innovators-640.jpg 640w, assets/images/events/passionate-innovators-1280.jpg 1280w" sizes="(max-width: 760px) calc(100vw - 32px), (max-width: 1024px) calc(100vw - 48px), (max-width: 1208px) calc((100vw - 48px) / 2), 560px" width="1280" height="859" alt="Students and organizers at the Passionate Innovators Hackathon" loading="lazy" decoding="async">
+            <img src="/assets/images/events/passionate-innovators-640.jpg" srcset="/assets/images/events/passionate-innovators-640.jpg 640w, /assets/images/events/passionate-innovators-1280.jpg 1280w" sizes="(max-width: 760px) calc(100vw - 32px), (max-width: 1024px) calc(100vw - 48px), (max-width: 1208px) calc((100vw - 48px) / 2), 560px" width="1280" height="859" alt="Students and organizers at the Passionate Innovators Hackathon" loading="lazy" decoding="async">
             <div class="story-copy">
               <span class="eyebrow">
                 Hackathon · Two days
@@ -486,7 +491,7 @@
               <p>
                 100 students. Two days of challenges and collaboration. A 500 JD prize and plenty of ideas put to the test.
               </p>
-              <a class="text-link" href="events.html#passionate-innovators">
+              <a class="text-link" href="/events/#passionate-innovators">
                 See the event
                 <span aria-hidden="true">
                   →
@@ -503,7 +508,7 @@
                 Meet the team behind our events, programs, and community.
               </p>
             </div>
-            <a class="button button-secondary" href="team.html">
+            <a class="button button-secondary" href="/team/">
               Our Team
               <span aria-hidden="true">
                 →
@@ -526,7 +531,7 @@
                 A few moments from the people and events in our story.
               </p>
             </div>
-            <a class="button button-secondary" href="archive.html">
+            <a class="button button-secondary" href="/archive/">
               Explore Our Archive
               <span aria-hidden="true">
                 →
@@ -535,8 +540,8 @@
           </div>
           <div class="archive-grid archive-preview-grid">
             <figure class="archive-card reveal">
-              <a class="archive-photo-link" href="archive.html#vivid-leadership-conference">
-                <img src="assets/images/archive/vivid-leadership-conference-640.jpg" srcset="assets/images/archive/vivid-leadership-conference-640.jpg 640w, assets/images/archive/vivid-leadership-conference-1600.jpg 1600w" sizes="(max-width: 480px) calc(100vw - 32px), (max-width: 1024px) calc((100vw - 64px) / 2), 370px" width="1600" height="1066" alt="A club group photograph at Vivid Leadership Conference" loading="lazy" decoding="async">
+              <a class="archive-photo-link" href="/archive/#vivid-leadership-conference">
+                <img src="/assets/images/archive/vivid-leadership-conference-640.jpg" srcset="/assets/images/archive/vivid-leadership-conference-640.jpg 640w, /assets/images/archive/vivid-leadership-conference-1600.jpg 1600w" sizes="(max-width: 480px) calc(100vw - 32px), (max-width: 1024px) calc((100vw - 64px) / 2), 370px" width="1600" height="1066" alt="A club group photograph at Vivid Leadership Conference" loading="lazy" decoding="async">
               </a>
               <figcaption>
                 <h3>
@@ -545,8 +550,8 @@
               </figcaption>
             </figure>
             <figure class="archive-card reveal">
-              <a class="archive-photo-link" href="archive.html#career-fair-2026">
-                <img src="assets/images/archive/career-fair-2026-640.jpg" srcset="assets/images/archive/career-fair-2026-640.jpg 640w, assets/images/archive/career-fair-2026-1600.jpg 1600w" sizes="(max-width: 480px) calc(100vw - 32px), (max-width: 1024px) calc((100vw - 64px) / 2), 370px" width="1600" height="1067" alt="Club members together at Career Fair 2026" loading="lazy" decoding="async">
+              <a class="archive-photo-link" href="/archive/#career-fair-2026">
+                <img src="/assets/images/archive/career-fair-2026-640.jpg" srcset="/assets/images/archive/career-fair-2026-640.jpg 640w, /assets/images/archive/career-fair-2026-1600.jpg 1600w" sizes="(max-width: 480px) calc(100vw - 32px), (max-width: 1024px) calc((100vw - 64px) / 2), 370px" width="1600" height="1067" alt="Club members together at Career Fair 2026" loading="lazy" decoding="async">
               </a>
               <figcaption>
                 <h3>
@@ -609,11 +614,11 @@
               </summary>
               <p>
                 Explore our
-                <a class="text-link" href="programs.html">
+                <a class="text-link" href="/programs/">
                   programs
                 </a>
                 and
-                <a class="text-link" href="events.html">
+                <a class="text-link" href="/events/">
                   past events
                 </a>
                 to get to know our talks, workshops, competitions, and field trips.
@@ -627,8 +632,8 @@
       <div class="container">
         <div class="footer-grid">
           <div class="footer-brand">
-            <a class="brand" href="index.html">
-              <img src="assets/images/brand/logo.png" alt="" width="40" height="40">
+            <a class="brand" href="/">
+              <img src="/assets/images/brand/logo.png" alt="" width="40" height="40">
               <span>
                 <strong>
                   Innovation
@@ -649,27 +654,27 @@
             </h2>
             <ul>
               <li>
-                <a href="index.html">
+                <a href="/">
                   Home
                 </a>
               </li>
               <li>
-                <a href="team.html">
+                <a href="/team/">
                   Our Team
                 </a>
               </li>
               <li>
-                <a href="events.html">
+                <a href="/events/">
                   Events
                 </a>
               </li>
               <li>
-                <a href="programs.html">
+                <a href="/programs/">
                   Programs
                 </a>
               </li>
-              <li><a href="archive.html">Photo Archive</a></li>
-              <li><a href="past-members-messages.html">Messages from Past Members</a></li>
+              <li><a href="/archive/">Photo Archive</a></li>
+              <li><a href="/past-members-messages/">Messages from Past Members</a></li>
             </ul>
           </div>
           <div>
