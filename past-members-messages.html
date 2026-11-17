@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      Messages from Past Members · Innovation Club · GJU
+    </title>
+    <meta name="description" content="A place for former Innovation Club members to share real memories and advice. Messages will be added when shared and approved.">
+    <meta name="theme-color" content="#060a10">
+    <link rel="canonical" href="https://innovationclub.online/past-members-messages.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Innovation Club · GJU">
+    <meta property="og:title" content="Messages from Past Members · Innovation Club">
+    <meta property="og:description" content="A place for former Innovation Club members to share real memories and advice. Messages will be added when shared and approved.">
+    <meta property="og:url" content="https://innovationclub.online/past-members-messages.html">
+    <meta property="og:image" content="https://innovationclub.online/assets/images/brand/logo.png">
+    <meta property="og:image:alt" content="Innovation Club logo">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="assets/images/brand/logo.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&amp;family=DM+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/main.js" defer>
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">
+      Skip to content
+    </a>
+    <header class="site-header">
+      <nav class="nav-shell container" aria-label="Main navigation">
+        <a class="brand" href="index.html">
+          <img src="assets/images/brand/logo.png" alt="" width="40" height="40">
+          <span>
+            <strong>
+              Innovation
+            </strong>
+            Club
+          </span>
+        </a>
+        <button class="nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-navigation" hidden>
+          <span>
+          </span>
+          <span>
+          </span>
+        </button>
+        <ul class="nav-links" id="primary-navigation">
+          <li>
+            <a href="index.html">
+              Home
+            </a>
+          </li>
+          <li>
+            <a href="team.html">
+              Our Team
+            </a>
+          </li>
+          <li>
+            <a href="events.html">
+              Events
+            </a>
+          </li>
+          <li>
+            <a href="programs.html">
+              Programs
+            </a>
+          </li>
+          <li class="nav-archive-item">
+            <details class="nav-archive is-current">
+              <summary aria-controls="archive-menu">
+                Archive
+              </summary>
+              <ul class="archive-menu" id="archive-menu">
+                <li>
+                  <a href="archive.html">
+                    Photo Archive
+                  </a>
+                </li>
+                <li>
+                  <a href="past-members-messages.html" aria-current="page">
+                    Messages from Past Members
+                  </a>
+                </li>
+              </ul>
+            </details>
+          </li>
+          <li>
+            <a class="button button-primary" href="index.html#join">
+              Join Us
+              <span aria-hidden="true">
+                ↗
+              </span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main id="main-content" tabindex="-1">
+      <section class="page-intro">
+        <div class="container">
+          <span class="eyebrow">
+            Always part of our story
+          </span>
+          <h1>
+            Messages from Past Members
+          </h1>
+          <p>
+            Once part of Innovation Club, always part of our story. This is a space for the people who helped shape our club to share their memories and advice with future members.
+          </p>
+        </div>
+      </section>
+      <section class="section messages-section" aria-labelledby="messages-title">
+        <div class="container">
+          <h2 class="sr-only" id="messages-title">
+            Member messages
+          </h2>
+          <div class="messages-empty">
+            <svg viewBox="0 0 56 56" fill="none" aria-hidden="true">
+              <path d="M12 9h32a6 6 0 0 1 6 6v22a6 6 0 0 1-6 6H25L12 51v-8a6 6 0 0 1-6-6V15a6 6 0 0 1 6-6Z" stroke="currentColor" stroke-width="2"/>
+              <path d="M17 22h22M17 30h15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <h2 id="messages-empty-title">
+              A place for real memories.
+            </h2>
+            <p>
+              Messages will be added here when former members share their words and approve them for the website. For now, explore the photos and people who are part of our club’s story.
+            </p>
+            <div class="button-row">
+              <a class="button button-primary" href="archive.html">
+                Explore the Photo Archive
+                <span aria-hidden="true">
+                  →
+                </span>
+              </a>
+              <a class="button button-secondary" href="team.html#past-members">
+                Meet our past members
+              </a>
+            </div>
+          </div>
+          <div class="message-grid" id="member-messages">
+          </div>
+          <!-- Inert reusable structure only. Add real, approved text before publishing a card.
+             Copy an article into #member-messages; remove the empty state after the first real message.
+             Unhide optional role, date, or photograph only when verified and supplied. -->
+          <template id="past-member-message-template">
+            <article class="message-card">
+              <header class="message-author">
+                <img data-message-photo alt="" loading="lazy" decoding="async" hidden>
+                <div>
+                  <h3 data-message-name>
+                  </h3>
+                  <p class="message-role" data-message-role hidden>
+                  </p>
+                </div>
+              </header>
+              <blockquote>
+                <p data-message-text>
+                </p>
+              </blockquote>
+              <time class="message-date" data-message-date hidden>
+              </time>
+            </article>
+          </template>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a class="brand" href="index.html">
+              <img src="assets/images/brand/logo.png" alt="" width="40" height="40">
+              <span>
+                <strong>
+                  Innovation
+                </strong>
+                Club
+                <small>
+                  German Jordanian University
+                </small>
+              </span>
+            </a>
+            <p>
+              A community for curious minds. We learn, build, and turn ideas into something useful, together with DI-TECH at GJU.
+            </p>
+          </div>
+          <div>
+            <h2>
+              Explore
+            </h2>
+            <ul>
+              <li>
+                <a href="index.html">
+                  Home
+                </a>
+              </li>
+              <li>
+                <a href="team.html">
+                  Our Team
+                </a>
+              </li>
+              <li>
+                <a href="events.html">
+                  Events
+                </a>
+              </li>
+              <li>
+                <a href="programs.html">
+                  Programs
+                </a>
+              </li>
+              <li>
+                <a href="archive.html">
+                  Photo Archive
+                </a>
+              </li>
+              <li>
+                <a href="past-members-messages.html">
+                  Messages from Past Members
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h2>
+              Get in touch
+            </h2>
+            <ul>
+              <li>
+                <a href="mailto:innovationclub@gju.edu.jo">
+                  innovationclub@gju.edu.jo
+                </a>
+              </li>
+              <li>
+                <a href="https://www.instagram.com/innovationclub.gju/" target="_blank" rel="noopener noreferrer">
+                  Instagram
+                  <span aria-hidden="true">
+                    ↗
+                  </span>
+                  <span class="sr-only">
+                    (opens in a new tab)
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.linkedin.com/company/innovation-club-gju/" target="_blank" rel="noopener noreferrer">
+                  LinkedIn
+                  <span aria-hidden="true">
+                    ↗
+                  </span>
+                  <span class="sr-only">
+                    (opens in a new tab)
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.gju.edu.jo" target="_blank" rel="noopener noreferrer">
+                  GJU Website
+                  <span aria-hidden="true">
+                    ↗
+                  </span>
+                  <span class="sr-only">
+                    (opens in a new tab)
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bar">
+          <span>
+            © 2026 Innovation Club · German Jordanian University
+          </span>
+          <span>
+            Made of ideas. Built by people.
+          </span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

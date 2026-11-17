@@ -1,1037 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Innovation Club · German Jordanian University</title>
-<meta name="description" content="GJU's largest student organization — building the next generation of innovators, entrepreneurs, and leaders.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-/* =========================================================
-   RESET & BASE
-   ========================================================= */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; font-size: 16px; }
-body {
-  background: #04070C;
-  color: #8492A6;
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 400;
-  line-height: 1.7;
-  overflow-x: hidden;
-}
-h1,h2,h3,h4,h5,h6 {
-  font-family: 'Outfit', sans-serif;
-  color: #EDF0F7;
-  line-height: 1.2;
-}
-a { color: inherit; text-decoration: none; }
-img { display: block; max-width: 100%; }
-ul { list-style: none; }
-button { cursor: pointer; border: none; background: none; font-family: inherit; }
-
-/* =========================================================
-   DESIGN TOKENS
-   ========================================================= */
-:root {
-  --amber: #F5C438;
-  --teal: #2DD4BF;
-  --bg: #04070C;
-  --bg-alt: #080D16;
-  --bg-img: #0B1120;
-  --text-head: #EDF0F7;
-  --text-body: #8492A6;
-  --text-muted: #3E4C5E;
-  --card-bg: rgba(255,255,255,.02);
-  --card-border: rgba(255,255,255,.06);
-  --r-sm: 8px;
-  --r-md: 12px;
-  --r-lg: 18px;
-  --r-xl: 24px;
-  --ease: cubic-bezier(.22,1,.36,1);
-  --ease-out: cubic-bezier(.22,1,.36,1);
-}
-
-/* =========================================================
-   UTILITY
-   ========================================================= */
-.container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-.tag {
-  display: inline-flex; align-items: center; gap: .4rem;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: .72rem; font-weight: 500;
-  color: var(--teal); border: 1px solid var(--teal);
-  padding: .25rem .75rem; border-radius: 6px;
-  text-transform: uppercase; letter-spacing: .08em;
-  margin-bottom: 1rem;
-}
-.tag-amber {
-  color: var(--amber); border-color: rgba(245,196,56,.4);
-}
-.section-label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: .72rem; font-weight: 500;
-  color: var(--amber); text-transform: uppercase;
-  letter-spacing: .12em; margin-bottom: 1rem;
-  display: flex; align-items: center; gap: .4rem;
-}
-.rv { opacity: 0; transform: translateY(32px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
-.rv.in { opacity: 1; transform: none; }
-.rv-delay-1 { transition-delay: .1s; }
-.rv-delay-2 { transition-delay: .2s; }
-.rv-delay-3 { transition-delay: .3s; }
-.rv-delay-4 { transition-delay: .4s; }
-
-/* =========================================================
-   BUTTONS
-   ========================================================= */
-.btn {
-  display: inline-flex; align-items: center; gap: .5rem;
-  padding: .75rem 1.75rem;
-  font-family: 'Outfit', sans-serif;
-  font-size: .95rem; font-weight: 600;
-  border-radius: var(--r-sm);
-  transition: all .3s var(--ease);
-}
-.btn-amber {
-  background: var(--amber); color: #04070C;
-}
-.btn-amber:hover { background: #f8d060; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(245,196,56,.3); }
-.btn-ghost {
-  background: transparent; color: var(--text-head);
-  border: 1px solid rgba(255,255,255,.2);
-}
-.btn-ghost:hover { border-color: rgba(255,255,255,.5); transform: translateY(-2px); }
-
-/* =========================================================
-   BACKGROUND ELEMENTS
-   ========================================================= */
-.grid-bg {
-  position: fixed; inset: 0; pointer-events: none; z-index: 0;
-  background-image:
-    linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
-  background-size: 80px 80px;
-  -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
-  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
-}
-
-/* =========================================================
-   NAVBAR
-   ========================================================= */
-.navbar {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-  height: 60px;
-  background: rgba(4,7,12,.5);
-  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid transparent;
-  transition: background .4s var(--ease), border-color .4s var(--ease);
-}
-.navbar.scrolled {
-  background: rgba(4,7,12,.92);
-  border-color: var(--card-border);
-}
-.nav-inner {
-  display: flex; align-items: center; justify-content: space-between;
-  height: 100%; max-width: 1200px; margin: 0 auto; padding: 0 2rem;
-}
-.nav-logo {
-  display: flex; align-items: center; gap: .65rem;
-  font-family: 'Outfit', sans-serif; font-size: 1.05rem;
-  color: var(--text-head);
-}
-.nav-logo img { width: 32px; height: 32px; object-fit: contain; }
-.nav-logo span { color: var(--amber); font-weight: 700; }
-.nav-links {
-  display: flex; align-items: center; gap: 2rem;
-}
-.nav-links a {
-  font-family: 'DM Sans', sans-serif;
-  font-size: .9rem; font-weight: 400;
-  color: var(--text-body);
-  transition: color .25s;
-}
-.nav-links a:hover, .nav-links a.active { color: var(--text-head); }
-.nav-links .btn-nav {
-  background: var(--amber); color: #04070C;
-  padding: .45rem 1.1rem;
-  border-radius: var(--r-sm);
-  font-weight: 600; font-size: .88rem;
-  transition: all .3s var(--ease);
-}
-.nav-links .btn-nav:hover { background: #f8d060; transform: translateY(-1px); }
-.hamburger {
-  display: none;
-  flex-direction: column; gap: 5px;
-  width: 28px; cursor: pointer;
-  padding: 4px;
-}
-.hamburger span {
-  display: block; height: 2px; background: var(--text-head);
-  border-radius: 2px;
-  transition: all .3s var(--ease);
-}
-.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.hamburger.open span:nth-child(2) { opacity: 0; }
-.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-.mobile-menu {
-  display: none; position: fixed; top: 60px; left: 0; right: 0;
-  background: rgba(8,13,22,.97);
-  backdrop-filter: blur(24px);
-  border-bottom: 1px solid var(--card-border);
-  padding: 1.5rem 2rem;
-  flex-direction: column; gap: 1rem;
-  z-index: 999;
-}
-.mobile-menu.open { display: flex; }
-.mobile-menu a {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 1rem; color: var(--text-body);
-  padding: .5rem 0; border-bottom: 1px solid var(--card-border);
-  transition: color .2s;
-}
-.mobile-menu a:last-child { border: none; }
-.mobile-menu a:hover { color: var(--text-head); }
-.mobile-menu .btn-nav-m {
-  background: var(--amber); color: #04070C;
-  padding: .65rem 1.5rem; border-radius: var(--r-sm);
-  font-weight: 600; text-align: center;
-  margin-top: .5rem;
-}
-
-/* =========================================================
-   HERO
-   ========================================================= */
-#hero {
-  position: relative; min-height: 100vh;
-  display: flex; align-items: center; justify-content: center;
-  overflow: hidden; padding-top: 60px;
-}
-.orb {
-  position: absolute; border-radius: 50%;
-  filter: blur(100px); pointer-events: none;
-  animation: orbFloat var(--dur, 20s) var(--ease2, ease-in-out) infinite alternate;
-}
-.orb-1 {
-  width: 560px; height: 560px;
-  background: radial-gradient(circle, rgba(245,196,56,.12) 0%, transparent 70%);
-  top: -120px; left: -160px; --dur: 22s;
-}
-.orb-2 {
-  width: 400px; height: 400px;
-  background: radial-gradient(circle, rgba(45,212,191,.1) 0%, transparent 70%);
-  top: 30%; right: -100px; --dur: 18s;
-}
-.orb-3 {
-  width: 300px; height: 300px;
-  background: radial-gradient(circle, rgba(245,196,56,.08) 0%, transparent 70%);
-  bottom: 0; left: 40%; --dur: 25s;
-}
-@keyframes orbFloat {
-  0%   { transform: translate(0,0) scale(1); }
-  50%  { transform: translate(30px,-40px) scale(1.05); }
-  100% { transform: translate(-20px,20px) scale(.98); }
-}
-.hero-content {
-  position: relative; z-index: 2;
-  display: flex; flex-direction: column;
-  align-items: center; text-align: center;
-  gap: 1.25rem; padding: 4rem 2rem;
-  max-width: 780px;
-}
-
-/* Lightbulb SVG */
-.hero-icon { margin-bottom: .5rem; }
-.hero-icon svg {
-  filter: drop-shadow(0 0 20px rgba(245,196,56,.3));
-  overflow: visible;
-}
-
-.hero-club-name {
-  font-family: 'Outfit', sans-serif;
-  font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 700;
-  color: var(--text-head);
-  letter-spacing: -.01em;
-  line-height: 1;
-}
-.hero-club-name span { color: var(--amber); }
-
-.hero-badge {
-  display: inline-flex; align-items: center; gap: .5rem;
-  background: rgba(245,196,56,.08);
-  border: 1px solid rgba(245,196,56,.2);
-  border-radius: 100px; padding: .4rem 1rem;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: .72rem; letter-spacing: .06em;
-  color: var(--text-body);
-}
-.badge-dot {
-  width: 7px; height: 7px; border-radius: 50%;
-  background: var(--amber);
-  animation: dotPulse 1.8s ease-in-out infinite;
-}
-@keyframes dotPulse {
-  0%,100% { box-shadow: 0 0 0 0 rgba(245,196,56,.6); }
-  50%      { box-shadow: 0 0 0 6px rgba(245,196,56,0); }
-}
-
-.hero-title {
-  font-family: 'Outfit', sans-serif;
-  font-size: clamp(2.8rem, 7vw, 5rem);
-  font-weight: 800; line-height: 1.1;
-  color: var(--text-head);
-}
-.hero-title .shimmer {
-  background: linear-gradient(90deg, var(--amber) 0%, #fff 40%, var(--amber) 80%, #f8d060 100%);
-  background-size: 250% auto;
-  -webkit-background-clip: text; background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: shimmerSlide 5s ease-in-out infinite;
-}
-@keyframes shimmerSlide {
-  0%   { background-position: 0% center; }
-  50%  { background-position: 100% center; }
-  100% { background-position: 0% center; }
-}
-
-.hero-sub {
-  font-size: 1.05rem; line-height: 1.75;
-  color: var(--text-body); max-width: 600px;
-}
-.hero-btns {
-  display: flex; flex-wrap: wrap; gap: 1rem;
-  justify-content: center; margin-top: .5rem;
-}
-.hero-metrics {
-  display: flex; flex-wrap: wrap; gap: 2.5rem;
-  justify-content: center; margin-top: 1rem;
-  padding-top: 2rem; border-top: 1px solid var(--card-border);
-}
-.metric {
-  display: flex; flex-direction: column; align-items: center;
-}
-.metric-val {
-  font-family: 'Outfit', sans-serif;
-  font-size: 2rem; font-weight: 800;
-  color: var(--amber);
-}
-.metric-lbl {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: .68rem; text-transform: uppercase;
-  letter-spacing: .1em; color: var(--text-muted);
-  margin-top: .1rem;
-}
-
-/* =========================================================
-   TICKER
-   ========================================================= */
-.ticker-wrap {
-  background: var(--bg-alt);
-  border-top: 1px solid var(--card-border);
-  border-bottom: 1px solid var(--card-border);
-  overflow: hidden; padding: .85rem 0;
-  position: relative; z-index: 2;
-}
-.ticker-track {
-  display: flex; width: max-content;
-  animation: tickerScroll 52s linear infinite;
-}
-.ticker-track:hover { animation-play-state: paused; }
-.ticker-item {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: .62rem; font-weight: 500;
-  text-transform: uppercase; letter-spacing: .12em;
-  color: var(--text-muted);
-  padding: 0 1.2rem;
-  white-space: nowrap;
-}
-.ticker-sep {
-  color: var(--amber); font-size: .55rem;
-  display: inline-flex; align-items: center;
-}
-@keyframes tickerScroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-33.333%); }
-}
-
-/* =========================================================
-   ABOUT
-   ========================================================= */
-#about {
-  background: var(--bg-alt);
-  padding: 7rem 0; position: relative; z-index: 1;
-}
-.about-grid {
-  display: grid;
-  grid-template-columns: 1fr 420px;
-  gap: 4rem; align-items: start;
-}
-.about-title {
-  font-size: clamp(2rem, 4vw, 2.8rem);
-  font-weight: 800; margin-bottom: 1.75rem;
-}
-.about-text p { margin-bottom: 1.25rem; line-height: 1.8; }
-.about-quote {
-  margin: 2rem 0;
-  padding: 1.25rem 1.5rem;
-  border-left: 3px solid var(--amber);
-  background: rgba(245,196,56,.04);
-  border-radius: 0 var(--r-md) var(--r-md) 0;
-  font-style: italic;
-  font-size: 1.05rem; color: var(--text-head);
-  line-height: 1.7;
-}
-
-.glance-card {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: var(--r-lg);
-  padding: 2rem;
-  position: sticky; top: 80px;
-}
-.glance-title {
-  font-size: 1.1rem; font-weight: 700;
-  margin-bottom: 1.5rem;
-}
-.stat-bar-wrap { margin-bottom: 1.25rem; }
-.stat-bar-head {
-  display: flex; justify-content: space-between;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: .7rem; color: var(--text-muted);
-  text-transform: uppercase; letter-spacing: .08em;
-  margin-bottom: .45rem;
-}
-.stat-bar-track {
-  height: 4px; background: rgba(255,255,255,.06);
-  border-radius: 4px; overflow: hidden;
-}
-.gc-fill {
-  height: 100%; width: 0;
-  background: linear-gradient(90deg, var(--amber), var(--teal));
-  border-radius: 4px;
-  transition: width 1.2s var(--ease);
-}
-.glance-sep { border: none; border-top: 1px solid var(--card-border); margin: 1.5rem 0; }
-.detail-row {
-  display: flex; justify-content: space-between;
-  padding: .5rem 0;
-  font-size: .88rem;
-  border-bottom: 1px solid var(--card-border);
-}
-.detail-row:last-child { border: none; }
-.detail-key {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: .68rem; text-transform: uppercase;
-  letter-spacing: .08em; color: var(--text-muted);
-}
-.detail-val { color: var(--text-head); font-size: .85rem; }
-
-/* =========================================================
-   WHAT WE DO
-   ========================================================= */
-#pillars {
-  padding: 7rem 0; background: var(--bg);
-  position: relative; z-index: 1;
-}
-.section-head { text-align: center; margin-bottom: 3.5rem; }
-.section-head .section-label { justify-content: center; }
-.section-title {
-  font-size: clamp(1.8rem, 4vw, 2.6rem);
-  font-weight: 800; margin-bottom: .75rem;
-}
-.section-sub { max-width: 520px; margin: 0 auto; }
-
-.pillars-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.25rem;
-}
-.p-card {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: var(--r-lg);
-  padding: 2rem 1.75rem;
-  position: relative; overflow: hidden;
-  cursor: default;
-  transition: border-color .3s, transform .3s var(--ease), box-shadow .3s;
-}
-.p-card::before {
-  content: '';
-  position: absolute; inset: 0; border-radius: inherit;
-  background: radial-gradient(400px circle at var(--mx,50%) var(--my,50%), rgba(245,196,56,.06) 0%, transparent 60%);
-  opacity: 0; transition: opacity .4s;
-  pointer-events: none;
-}
-.p-card:hover::before { opacity: 1; }
-.p-card:hover {
-  border-color: rgba(245,196,56,.2);
-  transform: translateY(-4px);
-  box-shadow: 0 16px 48px rgba(0,0,0,.4);
-}
-.p-num {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: .68rem; color: var(--text-muted);
-  letter-spacing: .1em; margin-bottom: .75rem;
-}
-.p-badge {
-  display: inline-flex; align-items: center;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: .62rem; font-weight: 500;
-  color: var(--teal); border: 1px solid rgba(45,212,191,.3);
-  padding: .2rem .6rem; border-radius: 4px;
-  text-transform: uppercase; letter-spacing: .08em;
-  margin-bottom: .75rem;
-}
-.p-title {
-  font-size: 1.15rem; font-weight: 700;
-  margin-bottom: .6rem;
-}
-.p-desc { font-size: .9rem; line-height: 1.7; }
-
-/* =========================================================
-   IMPACT NUMBERS
-   ========================================================= */
-#impact {
-  background: var(--bg-alt);
-  padding: 6rem 0; position: relative; z-index: 1;
-}
-.impact-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.25rem;
-}
-.impact-card {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: var(--r-lg);
-  padding: 2.5rem 1.5rem;
-  text-align: center;
-}
-.impact-num {
-  font-family: 'Outfit', sans-serif;
-  font-size: 2.8rem; font-weight: 800;
-  color: var(--amber); line-height: 1;
-  margin-bottom: .5rem;
-}
-.impact-lbl {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: .65rem; text-transform: uppercase;
-  letter-spacing: .12em; color: var(--text-muted);
-}
-
-/* =========================================================
-   PROGRAMS
-   ========================================================= */
-#programs {
-  padding: 7rem 0; background: var(--bg);
-  position: relative; z-index: 1;
-}
-.programs-stack { display: flex; flex-direction: column; gap: 1.5rem; }
-.prog-card {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: var(--r-xl);
-  padding: 2.5rem 3rem;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 2rem; align-items: start;
-  transition: border-color .3s, transform .3s var(--ease);
-}
-.prog-card:hover {
-  border-color: rgba(245,196,56,.15);
-  transform: translateX(4px);
-}
-.prog-badge {
-  display: inline-flex;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: .65rem; font-weight: 500;
-  padding: .25rem .8rem; border-radius: 6px;
-  text-transform: uppercase; letter-spacing: .08em;
-  margin-bottom: .9rem;
-}
-.prog-badge-amber {
-  background: rgba(245,196,56,.12);
-  color: var(--amber); border: 1px solid rgba(245,196,56,.25);
-}
-.prog-badge-teal {
-  background: rgba(45,212,191,.1);
-  color: var(--teal); border: 1px solid rgba(45,212,191,.25);
-}
-.prog-title {
-  font-size: 1.5rem; font-weight: 700;
-  margin-bottom: .3rem;
-}
-.prog-sub {
-  font-size: .85rem; color: var(--amber);
-  font-family: 'JetBrains Mono', monospace;
-  text-transform: uppercase; letter-spacing: .08em;
-  margin-bottom: .9rem;
-}
-.prog-desc { font-size: .95rem; line-height: 1.75; max-width: 580px; }
-.prog-meta {
-  display: flex; flex-direction: column; gap: .6rem;
-  min-width: 200px; padding-top: .25rem;
-}
-.prog-meta-row {
-  display: flex; flex-direction: column;
-  gap: .1rem;
-}
-.prog-meta-key {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: .6rem; text-transform: uppercase;
-  letter-spacing: .1em; color: var(--text-muted);
-}
-.prog-meta-val {
-  font-size: .85rem; color: var(--text-head); font-weight: 500;
-}
-
-/* =========================================================
-   PAST EVENTS
-   ========================================================= */
-#events {
-  background: var(--bg-alt);
-  padding: 7rem 0; position: relative; z-index: 1;
-}
-.events-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.25rem;
-}
-.ev-card {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: var(--r-lg);
-  overflow: hidden;
-  transition: transform .3s var(--ease), border-color .3s;
-}
-.ev-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(255,255,255,.1);
-}
-.ev-card-featured {
-  grid-column: 1 / -1;
-}
-.ev-img {
-  position: relative;
-  background: var(--bg-img);
-  overflow: hidden;
-}
-.ev-card:not(.ev-card-featured) .ev-img {
-  aspect-ratio: 16/9;
-}
-.ev-card-featured .ev-img {
-  aspect-ratio: 21/9;
-}
-.ev-img img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  display: block;
-}
-.ev-img-placeholder {
-  position: absolute; inset: 0;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  gap: .75rem;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: .68rem; color: var(--text-muted);
-  text-transform: uppercase; letter-spacing: .08em;
-  border: 1px dashed var(--card-border);
-}
-.ev-img-placeholder::before {
-  content: '';
-  width: 40px; height: 40px;
-  border: 2px dashed var(--text-muted);
-  border-radius: 6px;
-  opacity: .4;
-}
-.ev-body { padding: 1.5rem; }
-.ev-tag {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: .65rem; color: var(--teal);
-  text-transform: uppercase; letter-spacing: .08em;
-  margin-bottom: .6rem;
-}
-.ev-title {
-  font-size: 1.1rem; font-weight: 700;
-  margin-bottom: .5rem;
-}
-.ev-card-featured .ev-title { font-size: 1.35rem; }
-.ev-desc { font-size: .875rem; line-height: 1.7; }
-
-/* =========================================================
-   TEAM
-   ========================================================= */
-#team {
-  padding: 7rem 0; background: var(--bg);
-  position: relative; z-index: 1;
-}
-.team-photos {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.25rem;
-  margin-top: 3rem;
-}
-.team-photo-frame {
-  aspect-ratio: 16/10;
-  background: var(--bg-img);
-  border-radius: var(--r-xl);
-  overflow: hidden; position: relative;
-  border: 1px solid var(--card-border);
-}
-.team-photo-frame img {
-  width: 100%; height: 100%;
-  object-fit: cover; display: block;
-}
-.team-photo-placeholder {
-  position: absolute; inset: 0;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center; gap: .75rem;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: .68rem; color: var(--text-muted);
-  text-transform: uppercase; letter-spacing: .08em;
-}
-.team-photo-placeholder::before {
-  content: '';
-  width: 48px; height: 48px;
-  border: 2px dashed var(--text-muted);
-  border-radius: 8px; opacity: .4;
-}
-
-/* =========================================================
-   BOARD
-   ========================================================= */
-#board {
-  background: var(--bg-alt);
-  padding: 7rem 0; position: relative; z-index: 1;
-}
-.board-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.25rem;
-  margin-top: 3rem;
-}
-.b-card {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: var(--r-lg);
-  padding: 1.75rem;
-  position: relative; overflow: hidden;
-  cursor: default;
-  transition: border-color .3s, transform .3s var(--ease), box-shadow .3s;
-}
-.b-card::before {
-  content: '';
-  position: absolute; inset: 0; border-radius: inherit;
-  background: radial-gradient(300px circle at var(--mx,50%) var(--my,50%), rgba(245,196,56,.06) 0%, transparent 60%);
-  opacity: 0; transition: opacity .4s;
-  pointer-events: none;
-}
-.b-card:hover::before { opacity: 1; }
-.b-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(0,0,0,.4);
-}
-.b-avatar {
-  width: 52px; height: 52px; border-radius: 14px;
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Outfit', sans-serif;
-  font-size: .95rem; font-weight: 700;
-  background: linear-gradient(135deg, rgba(245,196,56,.1), rgba(45,212,191,.08));
-  border: 1px solid rgba(255,255,255,.08);
-  color: var(--amber); margin-bottom: 1rem;
-  letter-spacing: .02em;
-}
-.b-role {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: .62rem; text-transform: uppercase;
-  letter-spacing: .1em; color: var(--text-muted);
-  margin-bottom: .3rem;
-}
-.b-role.teal { color: var(--teal); }
-.b-name {
-  font-size: 1rem; font-weight: 700;
-  margin-bottom: .6rem;
-}
-.b-bio { font-size: .85rem; line-height: 1.65; }
-
-/* =========================================================
-   JOIN CTA
-   ========================================================= */
-#join {
-  padding: 8rem 0; background: var(--bg);
-  position: relative; z-index: 1; text-align: center;
-}
-.join-inner {
-  position: relative;
-  max-width: 640px; margin: 0 auto;
-}
-.join-title {
-  font-size: clamp(2.2rem, 5vw, 3.5rem);
-  font-weight: 800; line-height: 1.1;
-  margin-bottom: 1.25rem;
-}
-.join-sub { margin-bottom: 2.5rem; font-size: 1rem; }
-.join-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-
-/* =========================================================
-   FOOTER
-   ========================================================= */
-footer {
-  background: var(--bg-alt);
-  border-top: 1px solid var(--card-border);
-  padding: 4rem 0 2rem;
-  position: relative; z-index: 1;
-}
-.footer-grid {
-  display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr;
-  gap: 3rem;
-  margin-bottom: 3rem;
-}
-.footer-brand { display: flex; flex-direction: column; gap: .6rem; }
-.footer-logo {
-  display: flex; align-items: center; gap: .6rem;
-  font-family: 'Outfit', sans-serif;
-  font-size: 1rem; color: var(--text-head);
-  margin-bottom: .25rem;
-}
-.footer-logo img { width: 28px; height: 28px; object-fit: contain; }
-.footer-logo strong { color: var(--amber); }
-.footer-desc { font-size: .88rem; line-height: 1.7; max-width: 280px; }
-
-.footer-col h4 {
-  font-size: .8rem; font-weight: 700;
-  font-family: 'JetBrains Mono', monospace;
-  text-transform: uppercase; letter-spacing: .1em;
-  color: var(--text-head); margin-bottom: 1.25rem;
-}
-.footer-col ul { display: flex; flex-direction: column; gap: .6rem; }
-.footer-col ul a {
-  font-size: .88rem; color: var(--text-body);
-  transition: color .2s;
-  display: inline-flex; align-items: center; gap: .3rem;
-}
-.footer-col ul a:hover { color: var(--text-head); }
-.ext { font-size: .7rem; opacity: .5; }
-
-.footer-bar {
-  border-top: 1px solid var(--card-border);
-  padding-top: 1.5rem;
-  display: flex; justify-content: space-between; align-items: center;
-  flex-wrap: wrap; gap: 1rem;
-}
-.footer-bar-left {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: .65rem; text-transform: uppercase;
-  letter-spacing: .08em; color: var(--text-muted);
-}
-.footer-bar-right {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: .65rem; text-transform: uppercase;
-  letter-spacing: .08em; color: var(--text-muted);
-  display: flex; align-items: center; gap: .4rem;
-}
-.footer-dot {
-  width: 6px; height: 6px; border-radius: 50%;
-  background: var(--amber); display: inline-block;
-}
-
-/* =========================================================
-   VISION & MISSION
-   ========================================================= */
-#vision {
-  background: var(--bg);
-  padding: 6rem 0; position: relative; z-index: 1;
-}
-.vm-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-  margin-top: 3rem;
-}
-.vm-card {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: var(--r-xl);
-  padding: 2.5rem 2.5rem 2.5rem 2.5rem;
-  position: relative; overflow: hidden;
-}
-.vm-card::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0; height: 2px;
-  background: linear-gradient(90deg, var(--amber), var(--teal));
-  border-radius: var(--r-xl) var(--r-xl) 0 0;
-}
-.vm-icon {
-  font-size: 1.8rem; margin-bottom: 1rem; line-height: 1;
-}
-.vm-label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: .68rem; text-transform: uppercase;
-  letter-spacing: .12em; color: var(--amber);
-  margin-bottom: .45rem;
-}
-.vm-title {
-  font-size: 1.35rem; font-weight: 700;
-  margin-bottom: .75rem; color: var(--text-head);
-}
-.vm-card p { font-size: .95rem; line-height: 1.75; }
-
-/* =========================================================
-   BOARD — member list inside team cards
-   ========================================================= */
-.b-members {
-  margin-top: .4rem;
-  display: flex; flex-direction: column; gap: .3rem;
-}
-.b-members li {
-  font-size: .84rem; color: var(--text-body);
-  display: flex; align-items: center; gap: .45rem;
-  padding: .25rem 0;
-  border-bottom: 1px solid rgba(255,255,255,.04);
-}
-.b-members li:last-child { border: none; }
-.b-members li::before {
-  content: '';
-  width: 4px; height: 4px; border-radius: 50%;
-  background: var(--teal); flex-shrink: 0;
-  opacity: .7;
-}
-
-/* =========================================================
-   RESPONSIVE
-   ========================================================= */
-@media (max-width: 1024px) {
-  .about-grid { grid-template-columns: 1fr; }
-  .glance-card { position: static; }
-  .impact-grid { grid-template-columns: repeat(2, 1fr); }
-  .footer-grid { grid-template-columns: 1fr 1fr; }
-  .footer-brand { grid-column: 1 / -1; }
-}
-@media (max-width: 768px) {
-  .nav-links { display: none; }
-  .hamburger { display: flex; }
-  .pillars-grid { grid-template-columns: 1fr; }
-  .board-grid { grid-template-columns: 1fr 1fr; }
-  .events-grid { grid-template-columns: 1fr; }
-  .ev-card-featured { grid-column: 1; }
-  .prog-card { grid-template-columns: 1fr; }
-  .prog-meta { min-width: unset; }
-  .team-photos { grid-template-columns: 1fr; }
-  .footer-grid { grid-template-columns: 1fr; }
-  .vm-grid { grid-template-columns: 1fr; }
-}
-@media (max-width: 540px) {
-  .board-grid { grid-template-columns: 1fr; }
-  .impact-grid { grid-template-columns: 1fr 1fr; }
-  .hero-metrics { gap: 1.5rem; }
-}
-</style>
-</head>
-<body>
-
-<!-- Grid Background -->
-<div class="grid-bg" aria-hidden="true"></div>
-
-<!-- =========================================================
-     NAVBAR
-     ========================================================= -->
-<nav class="navbar" id="navbar">
-  <div class="nav-inner">
-    <a href="#" class="nav-logo">
-      <img src="logo.png" alt="Innovation Club Logo">
-      <span>Innovation</span> Club
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      Where Ideas Become Impact · Innovation Club · GJU
+    </title>
+    <meta name="description" content="Innovation Club at German Jordanian University brings curious students together through talks, workshops, hackathons, and field trips.">
+    <meta name="theme-color" content="#060a10">
+    <link rel="canonical" href="https://innovationclub.online/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Innovation Club · GJU">
+    <meta property="og:title" content="Where Ideas Become Impact · Innovation Club">
+    <meta property="og:description" content="Innovation Club at German Jordanian University brings curious students together through talks, workshops, hackathons, and field trips.">
+    <meta property="og:url" content="https://innovationclub.online/">
+    <meta property="og:image" content="https://innovationclub.online/assets/images/brand/logo.png">
+    <meta property="og:image:alt" content="Innovation Club logo">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="assets/images/brand/logo.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&amp;family=DM+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/main.js" defer>
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">
+      Skip to content
     </a>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#pillars">What We Do</a></li>
-      <li><a href="#programs">Programs</a></li>
-      <li><a href="#events">Events</a></li>
-      <li><a href="#board">Board</a></li>
-      <li><a href="#join" class="btn-nav">Join Us</a></li>
-    </ul>
-    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</nav>
-
-<!-- Mobile Menu -->
-<div class="mobile-menu" id="mobile-menu">
-  <a href="#about">About</a>
-  <a href="#pillars">What We Do</a>
-  <a href="#programs">Programs</a>
-  <a href="#events">Events</a>
-  <a href="#board">Board</a>
-  <a href="#join" class="btn-nav-m">Join Us</a>
-</div>
-
-<!-- =========================================================
-     HERO
-     ========================================================= -->
-<section id="hero">
-  <!-- Orbs -->
-  <div class="orb orb-1" aria-hidden="true"></div>
-  <div class="orb orb-2" aria-hidden="true"></div>
-  <div class="orb orb-3" aria-hidden="true"></div>
-
-  <div class="hero-content">
-    <!-- Animated Lightbulb SVG -->
-    <div class="hero-icon rv">
-      <svg width="120" height="130" viewBox="0 0 120 130" fill="none" xmlns="http://www.w3.org/2000/svg"
+    <header class="site-header">
+      <nav class="nav-shell container" aria-label="Main navigation">
+        <a class="brand" href="index.html">
+          <img src="assets/images/brand/logo.png" alt="" width="40" height="40">
+          <span>
+            <strong>
+              Innovation
+            </strong>
+            Club
+          </span>
+        </a>
+        <button class="nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-navigation" hidden>
+          <span>
+          </span>
+          <span>
+          </span>
+        </button>
+        <ul class="nav-links" id="primary-navigation">
+          <li>
+            <a href="index.html" aria-current="page">
+              Home
+            </a>
+          </li>
+          <li>
+            <a href="team.html">
+              Our Team
+            </a>
+          </li>
+          <li>
+            <a href="events.html">
+              Events
+            </a>
+          </li>
+          <li>
+            <a href="programs.html">
+              Programs
+            </a>
+          </li>
+          <li class="nav-archive-item">
+            <details class="nav-archive">
+              <summary aria-controls="archive-menu">Archive</summary>
+              <ul class="archive-menu" id="archive-menu">
+                <li><a href="archive.html">Photo Archive</a></li>
+                <li><a href="past-members-messages.html">Messages from Past Members</a></li>
+              </ul>
+            </details>
+          </li>
+          <li>
+            <a class="button button-primary" href="index.html#join">
+              Join Us
+              <span aria-hidden="true">
+                ↗
+              </span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main id="main-content" tabindex="-1">
+      <section class="hero">
+        <div class="container">
+          <div class="hero-grid">
+            <div class="hero-copy">
+              <h1>
+                Where ideas
+                <br>
+                become
+                <em>
+                  impact.
+                </em>
+              </h1>
+              <p>
+                A place for curious minds to learn, build, and make things happen. Real projects, new perspectives, and a community to grow with.
+              </p>
+              <div class="button-row">
+                <a class="button button-primary" href="#join">
+                  Join the Club
+                  <span aria-hidden="true">
+                    ↗
+                  </span>
+                </a>
+                <a class="button button-secondary" href="programs.html">
+                  Explore our programs
+                  <span aria-hidden="true">
+                    →
+                  </span>
+                </a>
+              </div>
+            </div>
+            <div class="hero-art" aria-hidden="true">
+              <svg data-lightbulb width="120" height="130" viewBox="0 0 120 130" fill="none" xmlns="http://www.w3.org/2000/svg"
            style="filter:drop-shadow(0 0 24px rgba(245,196,56,.35))" aria-hidden="true" overflow="visible">
-        <defs>
-          <!-- Amber glow filter -->
-          <filter id="aglow" x="-60%" y="-60%" width="220%" height="220%">
-            <feGaussianBlur stdDeviation="5" result="b"/>
-            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-          </filter>
-          <!-- Soft bulb glow -->
-          <filter id="bglow" x="-30%" y="-30%" width="160%" height="160%">
-            <feGaussianBlur stdDeviation="3" result="b"/>
-            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-          </filter>
-          <!-- Teal glow -->
-          <filter id="tglow" x="-40%" y="-40%" width="180%" height="180%">
-            <feGaussianBlur stdDeviation="2.5" result="b"/>
-            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-          </filter>
-          <!-- Inner bulb glass fill -->
-          <radialGradient id="glassFill" cx="42%" cy="38%" r="62%">
-            <stop offset="0%"   stop-color="#F5C438" stop-opacity="0.16"/>
-            <stop offset="70%"  stop-color="#F5C438" stop-opacity="0.04"/>
-            <stop offset="100%" stop-color="#F5C438" stop-opacity="0"/>
-          </radialGradient>
-        </defs>
-
-        <!-- ① Outer ambient glow pulse -->
-        <circle cx="60" cy="50" r="30" fill="rgba(245,196,56,0.12)" filter="url(#aglow)">
-          <animate attributeName="r"       values="26;38;26"          dur="3s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
-          <animate attributeName="opacity" values="0.12;0.32;0.12"    dur="3s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
-        </circle>
-
-        <!-- ② Spinning rays — 8 lines, SMIL rotate around bulb center (60,50) -->
-        <g filter="url(#aglow)" opacity="0.42">
-          <animateTransform attributeName="transform" type="rotate"
+                <defs>
+                  <!-- Amber glow filter -->
+                  <filter id="aglow" x="-60%" y="-60%" width="220%" height="220%">
+                    <feGaussianBlur stdDeviation="5" result="b"/>
+                    <feMerge>
+                      <feMergeNode in="b"/>
+                      <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                  </filter>
+                  <!-- Soft bulb glow -->
+                  <filter id="bglow" x="-30%" y="-30%" width="160%" height="160%">
+                    <feGaussianBlur stdDeviation="3" result="b"/>
+                    <feMerge>
+                      <feMergeNode in="b"/>
+                      <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                  </filter>
+                  <!-- Teal glow -->
+                  <filter id="tglow" x="-40%" y="-40%" width="180%" height="180%">
+                    <feGaussianBlur stdDeviation="2.5" result="b"/>
+                    <feMerge>
+                      <feMergeNode in="b"/>
+                      <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                  </filter>
+                  <!-- Inner bulb glass fill -->
+                  <radialGradient id="glassFill" cx="42%" cy="38%" r="62%">
+                    <stop offset="0%"   stop-color="#F5C438" stop-opacity="0.16"/>
+                    <stop offset="70%"  stop-color="#F5C438" stop-opacity="0.04"/>
+                    <stop offset="100%" stop-color="#F5C438" stop-opacity="0"/>
+                  </radialGradient>
+                </defs>
+                <!-- ① Outer ambient glow pulse -->
+                <circle cx="60" cy="50" r="30" fill="rgba(245,196,56,0.12)" filter="url(#aglow)">
+                  <animate attributeName="r"       values="26;38;26"          dur="3s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
+                  <animate attributeName="opacity" values="0.12;0.32;0.12"    dur="3s" repeatCount="indefinite" calcMode="spline" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>
+                </circle>
+                <!-- ② Spinning rays — 8 lines, SMIL rotate around bulb center (60,50) -->
+                <g filter="url(#aglow)" opacity="0.42">
+                  <animateTransform attributeName="transform" type="rotate"
             from="0 60 50" to="360 60 50" dur="14s" repeatCount="indefinite"/>
-          <!-- long rays on cardinal axes -->
-          <line x1="60" y1="6"   x2="60" y2="19"  stroke="#F5C438" stroke-width="1.6" stroke-linecap="round"/>
-          <line x1="60" y1="81"  x2="60" y2="94"  stroke="#F5C438" stroke-width="1.6" stroke-linecap="round"/>
-          <line x1="16" y1="50"  x2="29" y2="50"  stroke="#F5C438" stroke-width="1.6" stroke-linecap="round"/>
-          <line x1="91" y1="50"  x2="104" y2="50" stroke="#F5C438" stroke-width="1.6" stroke-linecap="round"/>
-          <!-- short rays on diagonals -->
-          <line x1="23" y1="17"  x2="33" y2="27"  stroke="#F5C438" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
-          <line x1="97" y1="17"  x2="87" y2="27"  stroke="#F5C438" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
-          <line x1="87" y1="73"  x2="97" y2="83"  stroke="#F5C438" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
-          <line x1="33" y1="73"  x2="23" y2="83"  stroke="#F5C438" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
-        </g>
-
-        <!-- ③ Bulb body — realistic pear shape with glass fill -->
-        <!-- Dome: arcs from 36,50 → top → 84,50, then taper to neck -->
-        <path d="
+                  <!-- long rays on cardinal axes -->
+                  <line x1="60" y1="6"   x2="60" y2="19"  stroke="#F5C438" stroke-width="1.6" stroke-linecap="round"/>
+                  <line x1="60" y1="81"  x2="60" y2="94"  stroke="#F5C438" stroke-width="1.6" stroke-linecap="round"/>
+                  <line x1="16" y1="50"  x2="29" y2="50"  stroke="#F5C438" stroke-width="1.6" stroke-linecap="round"/>
+                  <line x1="91" y1="50"  x2="104" y2="50" stroke="#F5C438" stroke-width="1.6" stroke-linecap="round"/>
+                  <!-- short rays on diagonals -->
+                  <line x1="23" y1="17"  x2="33" y2="27"  stroke="#F5C438" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+                  <line x1="97" y1="17"  x2="87" y2="27"  stroke="#F5C438" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+                  <line x1="87" y1="73"  x2="97" y2="83"  stroke="#F5C438" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+                  <line x1="33" y1="73"  x2="23" y2="83"  stroke="#F5C438" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+                </g>
+                <!-- ③ Bulb body — realistic pear shape with glass fill -->
+                <!-- Dome: arcs from 36,50 → top → 84,50, then taper to neck -->
+                <path d="
           M 50 79
           C 40 76, 36 66, 36 52
           C 36 31, 46 21, 60 21
@@ -1040,18 +185,16 @@ footer {
           Z
         " fill="url(#glassFill)" stroke="#F5C438" stroke-width="1.9"
           stroke-linejoin="round" filter="url(#bglow)"/>
-
-        <!-- Highlight arc (glass sheen) -->
-        <path d="M 44 33 C 44 28, 50 24, 57 23"
+                <!-- Highlight arc (glass sheen) -->
+                <path d="M 44 33 C 44 28, 50 24, 57 23"
           stroke="rgba(255,255,255,0.22)" stroke-width="2" fill="none"
           stroke-linecap="round"/>
-
-        <!-- ⑤ Rotating teal gear — counter-clockwise, SMIL rotate around gear center (60,47) -->
-        <g filter="url(#tglow)">
-          <animateTransform attributeName="transform" type="rotate"
+                <!-- ⑤ Rotating teal gear — counter-clockwise, SMIL rotate around gear center (60,47) -->
+                <g filter="url(#tglow)">
+                  <animateTransform attributeName="transform" type="rotate"
             from="0 60 47" to="-360 60 47" dur="10s" repeatCount="indefinite"/>
-          <!-- 8-tooth gear outline -->
-          <path d="
+                  <!-- 8-tooth gear outline -->
+                  <path d="
             M60 35
             L62.5 37.8 L65.8 36.8 L66.5 40.3 L69.8 41.7
             L68.5 45.1 L71.2 48.0 L68.5 50.9 L69.5 54.4
@@ -1061,826 +204,529 @@ footer {
             L53.5 40.3 L54.2 36.8 L57.5 37.8 Z
           " stroke="#2DD4BF" stroke-width="1.3" fill="rgba(45,212,191,0.06)"
             stroke-linejoin="round" opacity="0.85"/>
-          <!-- Gear hub -->
-          <circle cx="60" cy="47" r="5.5" stroke="#2DD4BF" stroke-width="1.3"
+                  <!-- Gear hub -->
+                  <circle cx="60" cy="47" r="5.5" stroke="#2DD4BF" stroke-width="1.3"
             fill="rgba(45,212,191,0.1)" opacity="0.95"/>
-          <circle cx="60" cy="47" r="2"   fill="#2DD4BF" opacity="0.7"/>
-        </g>
-
-        <!-- ⑥ Base / socket -->
-        <!-- Socket body -->
-        <rect x="49" y="81" width="22" height="4" rx="2"
+                  <circle cx="60" cy="47" r="2"   fill="#2DD4BF" opacity="0.7"/>
+                </g>
+                <!-- ⑥ Base / socket -->
+                <!-- Socket body -->
+                <rect x="49" y="81" width="22" height="4" rx="2"
           fill="rgba(245,196,56,0.08)" stroke="#F5C438" stroke-width="1.2">
-          <animate attributeName="opacity" values="0.8;0.4;0.8" dur="3s" repeatCount="indefinite"/>
-        </rect>
-        <rect x="50" y="87" width="20" height="4" rx="2"
+                  <animate attributeName="opacity" values="0.8;0.4;0.8" dur="3s" repeatCount="indefinite"/>
+                </rect>
+                <rect x="50" y="87" width="20" height="4" rx="2"
           fill="rgba(245,196,56,0.06)" stroke="#F5C438" stroke-width="1.2">
-          <animate attributeName="opacity" values="0.6;0.2;0.6" dur="3s" repeatCount="indefinite"/>
-        </rect>
-        <rect x="51" y="93" width="18" height="4" rx="2"
+                  <animate attributeName="opacity" values="0.6;0.2;0.6" dur="3s" repeatCount="indefinite"/>
+                </rect>
+                <rect x="51" y="93" width="18" height="4" rx="2"
           fill="rgba(245,196,56,0.04)" stroke="#F5C438" stroke-width="1.1">
-          <animate attributeName="opacity" values="0.35;0.08;0.35" dur="3s" repeatCount="indefinite"/>
-        </rect>
-      </svg>
-    </div>
-
-    <!-- Club name -->
-    <div class="hero-club-name rv rv-delay-1">
-      <span>Innovation</span> Club
-    </div>
-
-    <!-- Badge -->
-    <div class="hero-badge rv rv-delay-1">
-      <span class="badge-dot"></span>
-      German Jordanian University &nbsp;·&nbsp; Amman
-    </div>
-
-    <!-- Title -->
-    <h1 class="hero-title rv rv-delay-2">
-      Where Ideas<br>
-      <span class="shimmer">Become Impact</span>
-    </h1>
-
-    <!-- Subtitle -->
-    <p class="hero-sub rv rv-delay-3">
-      GJU's largest student organization — building the next generation of innovators,
-      entrepreneurs, and leaders through real projects, real speakers, and real community.
-    </p>
-
-    <!-- Buttons -->
-    <div class="hero-btns rv rv-delay-4">
-      <a href="#programs" class="btn btn-amber">Our Programs</a>
-      <a href="#about" class="btn btn-ghost">Learn more →</a>
-    </div>
-
-    <!-- Metrics -->
-    <div class="hero-metrics">
-      <div class="metric">
-        <span class="metric-val" data-target="1500" data-suffix="+">0</span>
-        <span class="metric-lbl">Members</span>
-      </div>
-      <div class="metric">
-        <span class="metric-val" data-target="20">0</span>
-        <span class="metric-lbl">Board Members</span>
-      </div>
-      <div class="metric">
-        <span class="metric-val" data-target="30" data-suffix="+">0</span>
-        <span class="metric-lbl">Events / Year</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- =========================================================
-     TICKER
-     ========================================================= -->
-<div class="ticker-wrap" aria-hidden="true">
-  <div class="ticker-track" id="ticker-track"></div>
-</div>
-
-<!-- =========================================================
-     ABOUT
-     ========================================================= -->
-<section id="about">
-  <div class="container">
-    <div class="about-grid">
-      <!-- Left -->
-      <div class="about-text">
-        <div class="section-label rv">◆ About the Club</div>
-        <h2 class="about-title rv rv-delay-1">GJU's Engine for Innovation</h2>
-        <div class="rv rv-delay-2">
-          <p>
-            The Innovation Club at German Jordanian University is the largest and most active student
-            organization on campus, uniting over 1,500 members from every faculty. Born from a shared
-            belief that great ideas don't belong to any single discipline, we've built a space where
-            engineers collaborate with designers, business students build with technologists, and ambition
-            meets execution.
-          </p>
-          <p>
-            Powered by a 20-person operational board — spanning Media, PR, Logistics, and Secretary
-            functions — the club runs with the discipline of a startup and the energy of a community.
-            Every program we run, every expert we bring to campus, every field trip we organize is
-            purposefully designed to bridge the gap between classroom theory and real-world impact.
-          </p>
-          <p>
-            As the flagship student partner of DI-TECH @ GJU, our Expert on Campus (EoC) series has
-            become the most recognized student-organized speaker program at the university — bringing
-            founders, engineers, and industry leaders directly to our students for honest, unfiltered
-            dialogue.
-          </p>
-          <blockquote class="about-quote">
-            "Innovation isn't a department — it's a mindset. We build the environment where that mindset becomes instinct."
-          </blockquote>
-        </div>
-      </div>
-
-      <!-- Right: Glance Card -->
-      <div class="rv rv-delay-3">
-        <div class="glance-card">
-          <h3 class="glance-title">Club at a Glance</h3>
-
-          <div class="detail-row">
-            <span class="detail-key">University</span>
-            <span class="detail-val">GJU, Amman</span>
+                  <animate attributeName="opacity" values="0.35;0.08;0.35" dur="3s" repeatCount="indefinite"/>
+                </rect>
+              </svg>
+              <span class="art-caption">
+                Think · Make · Connect
+              </span>
+            </div>
           </div>
-          <div class="detail-row">
-            <span class="detail-key">Affiliation</span>
-            <span class="detail-val">DI-TECH @ GJU</span>
+          <div class="hero-stats" aria-label="Club at a glance">
+            <div>
+              <strong>
+                25+
+              </strong>
+              <span>
+                Current members
+              </span>
+            </div>
+            <div>
+              <strong>
+                5+
+              </strong>
+              <span>
+                Operational teams
+              </span>
+            </div>
+            <div>
+              <strong>
+                3
+              </strong>
+              <span>
+                Core program formats
+              </span>
+            </div>
           </div>
-          <div class="detail-row">
-            <span class="detail-key">Teams</span>
-            <span class="detail-val">Media · PR · Logistics · Secretary</span>
-          </div>
-          <div class="detail-row">
-            <span class="detail-key">Status</span>
-            <span class="detail-val">Largest Club at GJU</span>
+          <div class="interest-strip" aria-hidden="true">
+            <span>
+              Innovation
+            </span>
+            <span>
+              Entrepreneurship
+            </span>
+            <span>
+              Technology
+            </span>
+            <span>
+              Design thinking
+            </span>
+            <span>
+              Community
+            </span>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- =========================================================
-     VISION & MISSION
-     ========================================================= -->
-<section id="vision">
-  <div class="container">
-    <div class="section-head">
-      <div class="section-label rv">◆ Our Purpose</div>
-      <h2 class="section-title rv rv-delay-1">Vision &amp; Mission</h2>
-    </div>
-    <div class="vm-grid">
-
-      <div class="vm-card rv rv-delay-1">
-        <div class="vm-icon">◆</div>
-        <div class="vm-label">Our Vision</div>
-        <h3 class="vm-title">Inspire. Empower. Impact.</h3>
-        <p>To create a space where every student feels inspired to think outside the box and turn their ideas into something real. We aim to empower students to make a lasting impact.</p>
-      </div>
-
-      <div class="vm-card rv rv-delay-2">
-        <div class="vm-icon">🚀</div>
-        <div class="vm-label">Our Mission</div>
-        <h3 class="vm-title">Bring Curious Minds Together</h3>
-        <p>To bring curious minds together and fuel a passion for creating real change. We offer workshops, events, and a community of like-minded innovators.</p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- =========================================================
-     WHAT WE DO
-     ========================================================= -->
-<section id="pillars">
-  <div class="container">
-    <div class="section-head">
-      <div class="section-label rv">◆ What We Do</div>
-      <h2 class="section-title rv rv-delay-1">Six Pillars of Impact</h2>
-      <p class="section-sub rv rv-delay-2">
-        Everything we do is built around one goal: turning students into people who can actually build things.
-      </p>
-    </div>
-    <div class="pillars-grid">
-
-      <div class="p-card rv">
-        <div class="p-num">01</div>
-        <div class="p-badge">Flagship</div>
-        <h3 class="p-title">Expert on Campus</h3>
-        <p class="p-desc">Our signature speaker series. Real operators — founders, engineers, executives — sharing real lessons. No slides of theory, just direct dialogue with people who've done it.</p>
-      </div>
-
-      <div class="p-card rv rv-delay-1">
-        <div class="p-num">02</div>
-        <div class="p-badge">Immersion</div>
-        <h3 class="p-title">Industry Field Trips</h3>
-        <p class="p-desc">Curated visits to factories, startups, cultural sites, and innovation hubs across Jordan. Seeing the ecosystem firsthand changes how students think about their own potential role in it.</p>
-      </div>
-
-      <div class="p-card rv rv-delay-2">
-        <div class="p-num">03</div>
-        <div class="p-badge">Build</div>
-        <h3 class="p-title">Hackathons & Competitions</h3>
-        <p class="p-desc">Intensive building sprints where cross-disciplinary teams tackle real challenges. 100+ students, cash prizes, and direct feedback from industry judges — pressure-tested creativity.</p>
-      </div>
-
-      <div class="p-card rv rv-delay-1">
-        <div class="p-num">04</div>
-        <div class="p-badge">Skill</div>
-        <h3 class="p-title">Technical Workshops</h3>
-        <p class="p-desc">Hands-on sessions covering emerging technologies, design thinking, prototyping, and practical skills that GJU curricula haven't yet caught up to.</p>
-      </div>
-
-      <div class="p-card rv rv-delay-2">
-        <div class="p-num">05</div>
-        <div class="p-badge">Incubate</div>
-        <h3 class="p-title">Startup Support</h3>
-        <p class="p-desc">Connecting student ventures with mentors and resources through our DI-TECH partnership. Where ideas that survive hackathons get the support to keep going.</p>
-      </div>
-
-      <div class="p-card rv rv-delay-3">
-        <div class="p-num">06</div>
-        <div class="p-badge">Community</div>
-        <h3 class="p-title">Cross-Faculty Network</h3>
-        <p class="p-desc">Breaking down faculty silos is itself a program. The most interesting things happen at intersections — we create the conditions for those intersections to exist and thrive.</p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- =========================================================
-     IMPACT NUMBERS
-     ========================================================= -->
-<section id="impact">
-  <div class="container">
-    <div class="impact-grid">
-      <div class="impact-card rv">
-        <div class="impact-num" data-target="1500" data-suffix="+">0</div>
-        <div class="impact-lbl">Members</div>
-      </div>
-      <div class="impact-card rv rv-delay-1">
-        <div class="impact-num" data-target="20">0</div>
-        <div class="impact-lbl">Board Members</div>
-      </div>
-      <div class="impact-card rv rv-delay-2">
-        <div class="impact-num" data-target="30" data-suffix="+">0</div>
-        <div class="impact-lbl">Events / Year</div>
-      </div>
-      <div class="impact-card rv rv-delay-3">
-        <div class="impact-num" data-target="4">0</div>
-        <div class="impact-lbl">Operational Teams</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- =========================================================
-     PROGRAMS
-     ========================================================= -->
-<section id="programs">
-  <div class="container">
-    <div class="section-head">
-      <div class="section-label rv">◆ Programs</div>
-      <h2 class="section-title rv rv-delay-1">What We Run</h2>
-      <p class="section-sub rv rv-delay-2">
-        Three flagship formats. Each one purposefully designed for depth, not breadth.
-      </p>
-    </div>
-    <div class="programs-stack">
-
-      <!-- Card 1 -->
-      <div class="prog-card rv">
-        <div class="prog-content">
-          <div class="prog-badge prog-badge-amber">Flagship Series</div>
-          <h3 class="prog-title">Expert on Campus (EoC)</h3>
-          <div class="prog-sub">Industry Leaders × GJU Students</div>
-          <p class="prog-desc">
-            Bringing founders, engineers, and industry leaders to share unfiltered insights.
-            Each session curated for depth — one expert, one topic, real conversation.
-            No corporate presentations; just direct access to people building things that matter.
-          </p>
-        </div>
-        <div class="prog-meta">
-          <div class="prog-meta-row">
-            <span class="prog-meta-key">Format</span>
-            <span class="prog-meta-val">Talk + Live Q&A</span>
+      </section>
+      <section class="section section-alt" id="about">
+        <div class="container">
+          <div class="about-grid">
+            <div class="prose reveal">
+              <span class="eyebrow">
+                About the club
+              </span>
+              <h2>
+                Different backgrounds.
+                <br>
+                Shared curiosity.
+              </h2>
+              <p>
+                Innovation Club brings students from across German Jordanian University together. Engineers work with designers, business students meet technologists, and ideas get a chance to grow.
+              </p>
+              <p>
+                Our club has 25+ current members. Our Media, Public Relations, Logistics, and Secretary teams help organize talks, workshops, competitions, and visits beyond campus.
+              </p>
+              <p>
+                Through our partnership with DI-TECH at GJU, we connect classroom learning with people and experiences from the wider world.
+              </p>
+            </div>
+            <aside class="info-panel reveal" aria-label="Club information">
+              <h3>
+                Club at a glance
+              </h3>
+              <dl>
+                <div>
+                  <dt>
+                    University
+                  </dt>
+                  <dd>
+                    GJU
+                  </dd>
+                </div>
+                <div>
+                  <dt>
+                    Affiliation
+                  </dt>
+                  <dd>
+                    DI-TECH at GJU
+                  </dd>
+                </div>
+                <div>
+                  <dt>
+                    Current members
+                  </dt>
+                  <dd>
+                    25+
+                  </dd>
+                </div>
+                <div>
+                  <dt>
+                    Open to
+                  </dt>
+                  <dd>
+                    All faculties
+                  </dd>
+                </div>
+              </dl>
+              <a class="text-link" href="team.html">
+                Meet our people
+                <span aria-hidden="true">
+                  →
+                </span>
+              </a>
+            </aside>
           </div>
-          <div class="prog-meta-row">
-            <span class="prog-meta-key">Frequency</span>
-            <span class="prog-meta-val">Bi-weekly</span>
-          </div>
-          <div class="prog-meta-row">
-            <span class="prog-meta-key">Venue</span>
-            <span class="prog-meta-val">GJU Campus</span>
+          <div class="vision-grid">
+            <article class="vision-card reveal">
+              <span class="eyebrow amber">
+                Our vision
+              </span>
+              <h3>
+                Inspire. Empower. Impact.
+              </h3>
+              <p>
+                A space where students can think beyond the usual, turn ideas into something real, and make a lasting difference.
+              </p>
+            </article>
+            <article class="vision-card reveal">
+              <span class="eyebrow">
+                Our mission
+              </span>
+              <h3>
+                Bring curious minds together.
+              </h3>
+              <p>
+                Help students learn and create through workshops, events, and a community that shares their curiosity.
+              </p>
+            </article>
           </div>
         </div>
-      </div>
-
-      <!-- Card 2 -->
-      <div class="prog-card rv rv-delay-1">
-        <div class="prog-content">
-          <div class="prog-badge prog-badge-teal">Competitions</div>
-          <h3 class="prog-title">Hackathons & Innovation Challenges</h3>
-          <div class="prog-sub">Build. Compete. Win.</div>
-          <p class="prog-desc">
-            Multi-day events where 100+ students form cross-disciplinary teams, compete for
-            cash prizes, and get direct feedback from industry judges. The most intense
-            and most rewarding thing we run.
-          </p>
-        </div>
-        <div class="prog-meta">
-          <div class="prog-meta-row">
-            <span class="prog-meta-key">Format</span>
-            <span class="prog-meta-val">2-Day Sprint</span>
+      </section>
+      <section class="section" id="what-we-do">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <span class="eyebrow">
+                What we do
+              </span>
+              <h2>
+                Six ways to get involved.
+              </h2>
+              <p>
+                Learn something new. Meet someone interesting. Build something that matters.
+              </p>
+            </div>
           </div>
-          <div class="prog-meta-row">
-            <span class="prog-meta-key">Prize Pool</span>
-            <span class="prog-meta-val">500+ JD</span>
+          <div class="pillar-grid">
+            <article class="pillar-card reveal">
+              <span class="pillar-number">
+                01
+              </span>
+              <h3>
+                Expert on Campus
+              </h3>
+              <p>
+                Meet founders, engineers, and industry leaders. Ask questions and hear what they have learned.
+              </p>
+            </article>
+            <article class="pillar-card reveal">
+              <span class="pillar-number">
+                02
+              </span>
+              <h3>
+                Industry Field Trips
+              </h3>
+              <p>
+                Visit factories, startups, heritage sites, and innovation hubs across Jordan.
+              </p>
+            </article>
+            <article class="pillar-card reveal">
+              <span class="pillar-number">
+                03
+              </span>
+              <h3>
+                Hackathons &amp; Competitions
+              </h3>
+              <p>
+                Work with students from different fields to solve real challenges and test your ideas.
+              </p>
+            </article>
+            <article class="pillar-card reveal">
+              <span class="pillar-number">
+                04
+              </span>
+              <h3>
+                Technical Workshops
+              </h3>
+              <p>
+                Build practical skills in technology, design thinking, and prototyping.
+              </p>
+            </article>
+            <article class="pillar-card reveal">
+              <span class="pillar-number">
+                05
+              </span>
+              <h3>
+                Startup Support
+              </h3>
+              <p>
+                Connect student ideas with mentors and resources through our DI-TECH partnership.
+              </p>
+            </article>
+            <article class="pillar-card reveal">
+              <span class="pillar-number">
+                06
+              </span>
+              <h3>
+                Cross-Faculty Network
+              </h3>
+              <p>
+                Meet people beyond your own faculty and find new ways to work together.
+              </p>
+            </article>
           </div>
         </div>
-      </div>
-
-      <!-- Card 3 -->
-      <div class="prog-card rv rv-delay-2">
-        <div class="prog-content">
-          <div class="prog-badge prog-badge-amber">Field Immersion</div>
-          <h3 class="prog-title">Industry & Heritage Trails</h3>
-          <div class="prog-sub">Beyond the campus walls</div>
-          <p class="prog-desc">
-            Curated field visits to industrial facilities, cultural heritage sites, and
-            entrepreneurial ecosystems across Jordan — As-Salt, Madaba, Amman's tech hubs.
-            Because the best classroom is the world itself.
-          </p>
-        </div>
-        <div class="prog-meta">
-          <div class="prog-meta-row">
-            <span class="prog-meta-key">Type</span>
-            <span class="prog-meta-val">Full-Day Trips</span>
+      </section>
+      <section class="section section-alt">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <span class="eyebrow">
+                Ideas in action
+              </span>
+              <h2>
+                More than a good idea.
+              </h2>
+              <p>
+                A look at the experiences we create together.
+              </p>
+            </div>
+            <a class="text-link" href="events.html">
+              Explore our events
+              <span aria-hidden="true">
+                →
+              </span>
+            </a>
           </div>
-          <div class="prog-meta-row">
-            <span class="prog-meta-key">Scope</span>
-            <span class="prog-meta-val">National</span>
+          <article class="feature-story reveal">
+            <img src="assets/images/events/passionate-innovators-640.jpg" srcset="assets/images/events/passionate-innovators-640.jpg 640w, assets/images/events/passionate-innovators-1280.jpg 1280w" sizes="(max-width: 760px) calc(100vw - 32px), (max-width: 1024px) calc(100vw - 48px), (max-width: 1208px) calc((100vw - 48px) / 2), 560px" width="1280" height="859" alt="Students and organizers at the Passionate Innovators Hackathon" loading="lazy" decoding="async">
+            <div class="story-copy">
+              <span class="eyebrow">
+                Hackathon · Two days
+              </span>
+              <h3>
+                Passionate Innovators
+              </h3>
+              <p>
+                100 students. Two days of challenges and collaboration. A 500 JD prize and plenty of ideas put to the test.
+              </p>
+              <a class="text-link" href="events.html#passionate-innovators">
+                See the event
+                <span aria-hidden="true">
+                  →
+                </span>
+              </a>
+            </div>
+          </article>
+          <div class="team-teaser">
+            <div>
+              <h3>
+                People make it possible.
+              </h3>
+              <p>
+                Meet the team behind our events, programs, and community.
+              </p>
+            </div>
+            <a class="button button-secondary" href="team.html">
+              Our Team
+              <span aria-hidden="true">
+                →
+              </span>
+            </a>
           </div>
         </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- =========================================================
-     PAST EVENTS
-     ========================================================= -->
-<section id="events">
-  <div class="container">
-    <div class="section-head">
-      <div class="section-label rv">◆ Past Events</div>
-      <h2 class="section-title rv rv-delay-1">What We've Built</h2>
-      <p class="section-sub rv rv-delay-2">
-        A record of what happens when you give ambitious students a real platform.
-      </p>
-    </div>
-    <div class="events-grid">
-
-      <!-- Event 1: Featured full-width -->
-      <div class="ev-card ev-card-featured rv">
-        <div class="ev-img">
-          <img src="passionate%20all%20photos.png" alt="Passionate Innovators Hackathon">
+      </section>
+      <section class="section archive-preview" id="club-archive" aria-labelledby="club-archive-title">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <span class="eyebrow">
+                People and memories
+              </span>
+              <h2 id="club-archive-title">
+                From the Club Archive
+              </h2>
+              <p>
+                A few moments from the people and events in our story.
+              </p>
+            </div>
+            <a class="button button-secondary" href="archive.html">
+              Explore Our Archive
+              <span aria-hidden="true">
+                →
+              </span>
+            </a>
+          </div>
+          <div class="archive-grid archive-preview-grid">
+            <figure class="archive-card reveal">
+              <a class="archive-photo-link" href="archive.html#vivid-leadership-conference">
+                <img src="assets/images/archive/vivid-leadership-conference-640.jpg" srcset="assets/images/archive/vivid-leadership-conference-640.jpg 640w, assets/images/archive/vivid-leadership-conference-1600.jpg 1600w" sizes="(max-width: 480px) calc(100vw - 32px), (max-width: 1024px) calc((100vw - 64px) / 2), 370px" width="1600" height="1066" alt="A club group photograph at Vivid Leadership Conference" loading="lazy" decoding="async">
+              </a>
+              <figcaption>
+                <h3>
+                  Vivid Leadership Conference
+                </h3>
+              </figcaption>
+            </figure>
+            <figure class="archive-card reveal">
+              <a class="archive-photo-link" href="archive.html#career-fair-2026">
+                <img src="assets/images/archive/career-fair-2026-640.jpg" srcset="assets/images/archive/career-fair-2026-640.jpg 640w, assets/images/archive/career-fair-2026-1600.jpg 1600w" sizes="(max-width: 480px) calc(100vw - 32px), (max-width: 1024px) calc((100vw - 64px) / 2), 370px" width="1600" height="1067" alt="Club members together at Career Fair 2026" loading="lazy" decoding="async">
+              </a>
+              <figcaption>
+                <h3>
+                  Career Fair 2026
+                </h3>
+              </figcaption>
+            </figure>
+          </div>
         </div>
-        <div class="ev-body">
-          <div class="ev-tag">◆ Hackathon · 2 Days · 100 Students</div>
-          <h3 class="ev-title">Passionate Innovators</h3>
-          <p class="ev-desc">
-            A two-day event where 100 students competed for a 500 JD prize, showcasing incredible
-            innovation and creativity through hands-on challenges and collaborative problem-solving.
-            The most intense, most rewarding event we've run to date.
-          </p>
+      </section>
+      <section class="section" id="join">
+        <div class="container">
+          <div class="join-panel">
+            <span class="eyebrow">
+              Open to all faculties
+            </span>
+            <h2>
+              Your next idea
+              <br>
+              starts with a conversation.
+            </h2>
+            <p>
+              You do not need to study a particular subject. If you are curious and ready to work with others, there is a place for you here.
+            </p>
+            <div class="button-row">
+              <a class="button button-primary" href="https://chat.whatsapp.com/IQHLxVh9CBuE3qbPdCDzAi" target="_blank" rel="noopener noreferrer">
+                Join us on WhatsApp
+                <span aria-hidden="true">
+                  ↗
+                </span>
+                <span class="sr-only">
+                  (opens in a new tab)
+                </span>
+              </a>
+              <a class="button button-secondary" href="mailto:innovationclub@gju.edu.jo">
+                Ask us a question
+              </a>
+            </div>
+          </div>
+          <div class="faq">
+            <details>
+              <summary>
+                Who can join Innovation Club?
+              </summary>
+              <p>
+                Students from all GJU faculties are welcome. Our work brings different backgrounds and interests together.
+              </p>
+            </details>
+            <details>
+              <summary>
+                How do I get involved?
+              </summary>
+              <p>
+                Use the WhatsApp link to connect with the club, or email innovationclub@gju.edu.jo if you have a question.
+              </p>
+            </details>
+            <details>
+              <summary>
+                What does the club do?
+              </summary>
+              <p>
+                Explore our
+                <a class="text-link" href="programs.html">
+                  programs
+                </a>
+                and
+                <a class="text-link" href="events.html">
+                  past events
+                </a>
+                to get to know our talks, workshops, competitions, and field trips.
+              </p>
+            </details>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a class="brand" href="index.html">
+              <img src="assets/images/brand/logo.png" alt="" width="40" height="40">
+              <span>
+                <strong>
+                  Innovation
+                </strong>
+                Club
+                <small>
+                  German Jordanian University
+                </small>
+              </span>
+            </a>
+            <p>
+              A community for curious minds. We learn, build, and turn ideas into something useful, together with DI-TECH at GJU.
+            </p>
+          </div>
+          <div>
+            <h2>
+              Explore
+            </h2>
+            <ul>
+              <li>
+                <a href="index.html">
+                  Home
+                </a>
+              </li>
+              <li>
+                <a href="team.html">
+                  Our Team
+                </a>
+              </li>
+              <li>
+                <a href="events.html">
+                  Events
+                </a>
+              </li>
+              <li>
+                <a href="programs.html">
+                  Programs
+                </a>
+              </li>
+              <li><a href="archive.html">Photo Archive</a></li>
+              <li><a href="past-members-messages.html">Messages from Past Members</a></li>
+            </ul>
+          </div>
+          <div>
+            <h2>
+              Get in touch
+            </h2>
+            <ul>
+              <li>
+                <a href="mailto:innovationclub@gju.edu.jo">
+                  innovationclub@gju.edu.jo
+                </a>
+              </li>
+              <li>
+                <a href="https://www.instagram.com/innovationclub.gju/" target="_blank" rel="noopener noreferrer">
+                  Instagram
+                  <span aria-hidden="true">
+                    ↗
+                  </span>
+                  <span class="sr-only">
+                    (opens in a new tab)
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.linkedin.com/company/innovation-club-gju/" target="_blank" rel="noopener noreferrer">
+                  LinkedIn
+                  <span aria-hidden="true">
+                    ↗
+                  </span>
+                  <span class="sr-only">
+                    (opens in a new tab)
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.gju.edu.jo" target="_blank" rel="noopener noreferrer">
+                  GJU Website
+                  <span aria-hidden="true">
+                    ↗
+                  </span>
+                  <span class="sr-only">
+                    (opens in a new tab)
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bar">
+          <span>
+            © 2026 Innovation Club · German Jordanian University
+          </span>
+          <span>
+            Made of ideas. Built by people.
+          </span>
         </div>
       </div>
-
-      <!-- Event 2 -->
-      <div class="ev-card rv rv-delay-1">
-        <div class="ev-img">
-          <img src="WhatsApp%20Image%202026-02-20%20at%202.24.41%20PM.jpeg" alt="EoC: Hisham Abubaker">
-        </div>
-        <div class="ev-body">
-          <div class="ev-tag">◆ Expert on Campus</div>
-          <h3 class="ev-title">EoC: Hisham Abubaker</h3>
-          <p class="ev-desc">
-            CEO and founder of Dimitri's Coffee and Kanaan IoT. A session bridging academia and
-            industry — critical market insights and direct dialogue with a top-tier professional leader.
-          </p>
-        </div>
-      </div>
-
-      <!-- Event 3 -->
-      <div class="ev-card rv rv-delay-2">
-        <div class="ev-img">
-          <img src="WhatsApp%20Image%202026-01-28%20at%208.59.04%20PM%20(1).jpeg" alt="Madaba Innovation Trail">
-        </div>
-        <div class="ev-body">
-          <div class="ev-tag">◆ Field Trip · Madaba</div>
-          <h3 class="ev-title">Madaba Innovation Trail</h3>
-          <p class="ev-desc">
-            A unique initiative bridging cultural heritage and industrial development. Field visits
-            to archaeological sites and industrial facilities in Madaba, inspiring students to merge
-            history with economic potential.
-          </p>
-        </div>
-      </div>
-
-      <!-- Event 4 -->
-      <div class="ev-card rv rv-delay-1">
-        <div class="ev-img">
-          <img src="WhatsApp%20Image%202026-01-28%20at%208.59.04%20PM.jpeg" alt="Industrial Partnership Conference 2025">
-        </div>
-        <div class="ev-body">
-          <div class="ev-tag">◆ Conference Partnership</div>
-          <h3 class="ev-title">Industrial Partnership Conf. 2025</h3>
-          <p class="ev-desc">
-            Partnered with DI-TECH to organize IPC 2025 at GJU. Our team managed the entire scope —
-            logistics, media, guest lists — ensuring flawless execution under the patronage of
-            Prof. Ala'aldeen Alhalhouli.
-          </p>
-        </div>
-      </div>
-
-      <!-- Event 5 -->
-      <div class="ev-card rv rv-delay-2">
-        <div class="ev-img">
-          <img src="WhatsApp%20Image%202026-01-28%20at%208.59.03%20PM.jpeg" alt="EoC: Eng. Salah Aloqabi">
-        </div>
-        <div class="ev-body">
-          <div class="ev-tag">◆ Expert on Campus</div>
-          <h3 class="ev-title">EoC: Eng. Salah Aloqabi</h3>
-          <p class="ev-desc">
-            As part of our Expert on Campus series, we hosted Eng. Salah Aloqabi. The session
-            provided students with critical market insights and direct dialogue with a top-tier
-            professional leader in his field.
-          </p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- =========================================================
-     THE TEAM
-     ========================================================= -->
-<section id="team">
-  <div class="container">
-    <div class="section-head">
-      <div class="section-label rv">◆ The Team</div>
-      <h2 class="section-title rv rv-delay-1">The People Behind It All</h2>
-      <p class="section-sub rv rv-delay-2">
-        20 board members. 4 operational teams. One mission.
-      </p>
-    </div>
-    <div class="team-photos">
-
-      <div class="team-photo-frame rv rv-delay-1">
-        <img src="IMG-20250803-WA0003.jpg" alt="Innovation Club Board Group Photo 1">
-      </div>
-
-      <div class="team-photo-frame rv rv-delay-2">
-        <img src="WhatsApp%20Image%202026-02-17%20at%202.02.35%20PM.jpeg" alt="Innovation Club Board Group Photo 2">
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- =========================================================
-     BOARD
-     ========================================================= -->
-<section id="board">
-  <div class="container">
-    <div class="section-head">
-      <div class="section-label rv">◆ Board</div>
-      <h2 class="section-title rv rv-delay-1">Who Runs It</h2>
-      <p class="section-sub rv rv-delay-2">
-        The 20-member board that keeps everything moving.
-      </p>
-    </div>
-    <div class="board-grid">
-
-      <!-- 1. Mohannad Awawdeh -->
-      <div class="b-card rv">
-        <div class="b-avatar">MA</div>
-        <div class="b-role">Founder</div>
-        <div class="b-name">Mohannad Awawdeh</div>
-        <p class="b-bio">The original architect of the Innovation Club. Built the foundation that turned a student initiative into GJU's largest and most impactful organization.</p>
-      </div>
-
-      <!-- 2. Hasan Abuzaid -->
-      <div class="b-card rv rv-delay-1">
-        <div class="b-avatar">HA</div>
-        <div class="b-role">President</div>
-        <div class="b-name">Hasan Abuzaid</div>
-        <p class="b-bio">Mechatronics Engineering. Founded the Expert on Campus series. Leads the 20-member board and shapes the club's strategic direction across all programs.</p>
-      </div>
-
-      <!-- 3. Media Team -->
-      <div class="b-card rv rv-delay-2">
-        <div class="b-avatar">MD</div>
-        <div class="b-role">Media</div>
-        <div class="b-name">Media Team</div>
-        <p class="b-bio">Content creation, videography, photography, and visual storytelling.</p>
-        <ul class="b-members">
-          <li>Dima Alsaheb</li>
-          <li>Etidal Eriqat</li>
-          <li>Farah Alnadi</li>
-          <li>Remaz Qawasmeh</li>
-        </ul>
-      </div>
-
-      <!-- 4. Logistics Team -->
-      <div class="b-card rv rv-delay-1">
-        <div class="b-avatar">LG</div>
-        <div class="b-role">Logistics</div>
-        <div class="b-name">Logistics Team</div>
-        <p class="b-bio">Event execution, venue coordination, and on-the-ground operations.</p>
-        <ul class="b-members">
-          <li>Zaid Saleh</li>
-          <li>Qussay Alhaj</li>
-          <li>Ahmad Irshaid</li>
-          <li>Hussam Abuseeni</li>
-          <li>Mahdi Alroomi</li>
-        </ul>
-      </div>
-
-      <!-- 5. PR Team -->
-      <div class="b-card rv rv-delay-2">
-        <div class="b-avatar">PR</div>
-        <div class="b-role">Public Relations</div>
-        <div class="b-name">PR Team</div>
-        <p class="b-bio">Brand voice, social media, partnerships, and outreach.</p>
-        <ul class="b-members">
-          <li>Ali Alqudah</li>
-          <li>Jana Alsharaan</li>
-          <li>Sara Ismail</li>
-          <li>Abdallah Shanaah</li>
-        </ul>
-      </div>
-
-      <!-- 6. Secretary Team -->
-      <div class="b-card rv rv-delay-3">
-        <div class="b-avatar">SC</div>
-        <div class="b-role">Secretary</div>
-        <div class="b-name">Secretary Team</div>
-        <p class="b-bio">Documentation, meeting minutes, and administrative coordination.</p>
-        <ul class="b-members">
-          <li>Noorshan Zaza</li>
-          <li>Salma Awad</li>
-          <li>Sara Tarawneh</li>
-          <li>Retajj Mohammad</li>
-          <li>Duha Almahadeen</li>
-        </ul>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- =========================================================
-     JOIN CTA
-     ========================================================= -->
-<section id="join">
-  <div class="container">
-    <div class="join-inner">
-      <div class="section-label rv" style="justify-content:center;">◆ Open to All Faculties</div>
-      <h2 class="join-title rv rv-delay-1">
-        Build Something<br>
-        <span class="shimmer">That Matters</span>
-      </h2>
-      <p class="join-sub rv rv-delay-2">
-        It doesn't matter what you study. If you believe that ideas only reach their potential
-        when curious people work together — you already belong here.
-      </p>
-      <div class="join-btns rv rv-delay-3">
-        <a href="https://chat.whatsapp.com/IQHLxVh9CBuE3qbPdCDzAi" target="_blank" rel="noopener" class="btn btn-amber">Join the Club</a>
-        <a href="#programs" class="btn btn-ghost">See Our Programs →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- =========================================================
-     FOOTER
-     ========================================================= -->
-<footer>
-  <div class="container">
-    <div class="footer-grid">
-      <!-- Col 1: Brand -->
-      <div class="footer-brand">
-        <a href="#" class="footer-logo">
-          <img src="logo.png" alt="Innovation Club">
-          <strong>Innovation</strong> Club · GJU
-        </a>
-        <p class="footer-desc">
-          GJU's largest student organization, building the next generation of innovators,
-          entrepreneurs, and leaders. Affiliated with DI-TECH @ German Jordanian University.
-        </p>
-      </div>
-
-      <!-- Col 2: Links -->
-      <div class="footer-col">
-        <h4>Club</h4>
-        <ul>
-          <li><a href="#about">About</a></li>
-          <li><a href="#pillars">What We Do</a></li>
-          <li><a href="#programs">Programs</a></li>
-          <li><a href="#events">Past Events</a></li>
-          <li><a href="#board">Board</a></li>
-          <li><a href="#join">Join</a></li>
-        </ul>
-      </div>
-
-      <!-- Col 3: Connect -->
-      <div class="footer-col">
-        <h4>Connect</h4>
-        <ul>
-          <li><a href="https://www.gju.edu.jo" target="_blank" rel="noopener">GJU Website <span class="ext">↗</span></a></li>
-          <li><a href="https://www.instagram.com/innovationclub.gju/" target="_blank" rel="noopener">Instagram <span class="ext">↗</span></a></li>
-          <li><a href="https://www.linkedin.com/company/innovation-club-gju/" target="_blank" rel="noopener">LinkedIn <span class="ext">↗</span></a></li>
-          <li><a href="mailto:innovationclub@gju.edu.jo">Contact Us</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="footer-bar">
-      <span class="footer-bar-left">© 2026 Innovation Club · German Jordanian University</span>
-      <span class="footer-bar-right">
-        <span class="footer-dot"></span>
-        GJU's Largest Student Organization · Amman, Jordan
-      </span>
-    </div>
-  </div>
-</footer>
-
-<!-- =========================================================
-     JAVASCRIPT
-     ========================================================= -->
-<script>
-(function () {
-  'use strict';
-
-  /* -------------------------------------------------------
-     1. TICKER — populate + 3x duplication
-  ------------------------------------------------------- */
-  const TICKER_ITEMS = [
-    'Innovation','Entrepreneurship','Leadership','Design Thinking',
-    'AI & Technology','Startups','Prototyping','Industry Immersion',
-    'Hackathons','Cross-Disciplinary','Expert on Campus','Community',
-    'Madaba Trail','DI-TECH'
-  ];
-
-  function buildTicker() {
-    const track = document.getElementById('ticker-track');
-    if (!track) return;
-    // Render 3 copies for seamless loop
-    const html = Array.from({length: 3}, () =>
-      TICKER_ITEMS.map(item =>
-        `<span class="ticker-item">${item}</span><span class="ticker-sep">◆</span>`
-      ).join('')
-    ).join('');
-    track.innerHTML = html;
-  }
-  buildTicker();
-
-  /* -------------------------------------------------------
-     2. NAVBAR — scroll class + active links
-  ------------------------------------------------------- */
-  const navbar = document.getElementById('navbar');
-  const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
-  const sections = document.querySelectorAll('section[id]');
-
-  function onScroll() {
-    if (window.scrollY > 20) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
-    }
-  }
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
-
-  // Active link via IntersectionObserver
-  const sectionObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const id = entry.target.getAttribute('id');
-        navLinks.forEach(a => {
-          a.classList.toggle('active', a.getAttribute('href') === '#' + id);
-        });
-      }
-    });
-  }, { rootMargin: '-40% 0px -55% 0px' });
-
-  sections.forEach(s => sectionObserver.observe(s));
-
-  /* -------------------------------------------------------
-     3. HAMBURGER
-  ------------------------------------------------------- */
-  const hamburger = document.getElementById('hamburger');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const mobileLinks = mobileMenu ? mobileMenu.querySelectorAll('a') : [];
-
-  if (hamburger && mobileMenu) {
-    hamburger.addEventListener('click', () => {
-      const open = hamburger.classList.toggle('open');
-      mobileMenu.classList.toggle('open', open);
-      document.body.style.overflow = open ? 'hidden' : '';
-    });
-
-    mobileLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        hamburger.classList.remove('open');
-        mobileMenu.classList.remove('open');
-        document.body.style.overflow = '';
-      });
-    });
-  }
-
-  /* -------------------------------------------------------
-     4. SCROLL REVEAL — IntersectionObserver on .rv
-  ------------------------------------------------------- */
-  const rvObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('in');
-        rvObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.08 });
-
-  document.querySelectorAll('.rv').forEach(el => rvObserver.observe(el));
-
-  /* -------------------------------------------------------
-     5. STAT BARS — trigger width on scroll
-  ------------------------------------------------------- */
-  const barObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const fills = entry.target.querySelectorAll('.gc-fill');
-        fills.forEach(fill => {
-          const w = fill.getAttribute('data-width') || '0';
-          // slight delay for reveal
-          setTimeout(() => { fill.style.width = w + '%'; }, 200);
-        });
-        barObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.2 });
-
-  const glanceCard = document.querySelector('.glance-card');
-  if (glanceCard) barObserver.observe(glanceCard);
-
-  /* -------------------------------------------------------
-     6. COUNT-UP — all [data-target] elements
-  ------------------------------------------------------- */
-  function easeOut(t) {
-    return 1 - Math.pow(1 - t, 3);
-  }
-
-  function formatNum(n, suffix) {
-    const rounded = Math.round(n);
-    const formatted = rounded >= 1000
-      ? rounded.toLocaleString('en-US')
-      : String(rounded);
-    return formatted + (suffix || '');
-  }
-
-  function animateCount(el) {
-    const target = parseInt(el.getAttribute('data-target'), 10);
-    const suffix = el.getAttribute('data-suffix') || '';
-    const duration = 2200;
-    const start = performance.now();
-
-    function step(now) {
-      const elapsed = now - start;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = easeOut(progress);
-      el.textContent = formatNum(target * eased, suffix);
-      if (progress < 1) requestAnimationFrame(step);
-      else el.textContent = formatNum(target, suffix);
-    }
-    requestAnimationFrame(step);
-  }
-
-  const countObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        animateCount(entry.target);
-        countObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.3 });
-
-  document.querySelectorAll('[data-target]').forEach(el => countObserver.observe(el));
-
-  /* -------------------------------------------------------
-     7. MOUSE SPOTLIGHT — .p-card and .b-card
-  ------------------------------------------------------- */
-  function attachSpotlight(selector) {
-    document.querySelectorAll(selector).forEach(card => {
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = ((e.clientX - rect.left) / rect.width) * 100;
-        const y = ((e.clientY - rect.top) / rect.height) * 100;
-        card.style.setProperty('--mx', x + '%');
-        card.style.setProperty('--my', y + '%');
-      });
-    });
-  }
-  attachSpotlight('.p-card');
-  attachSpotlight('.b-card');
-
-})();
-</script>
-
-</body>
+    </footer>
+  </body>
 </html>

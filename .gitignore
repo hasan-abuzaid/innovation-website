@@ -1,0 +1,6 @@
+# Local Playwright MCP browser artifacts
+.playwright-mcp/
+
+# Other generated browser test artifacts
+playwright-report/
+test-results/
