@@ -1,121 +1,187 @@
 # Innovation Club · GJU
 
-A six-page static website for Innovation Club at German Jordanian University. Built with HTML, CSS, and vanilla JavaScript. No packages, framework, or build step are required.
+The official Innovation Club website at German Jordanian University. A six-page static site built with HTML, CSS, and vanilla JavaScript, hosted on GitHub Pages.
+
+**Live website:** [innovationclub.online](https://innovationclub.online/)
+
+No framework, package installation, build step, backend, database, or CMS is required. Typography uses Outfit and DM Sans from Google Fonts, with system-font fallbacks.
 
 ## Pages
 
-- `/` (`index.html`): Home, About, Vision and Mission, What We Do, and Join Us.
-- `/team/` (`team/index.html`): shared Founder and Past President feature, Our People, Our New Members, and Past Members, in that order.
-- `/events/` (`events/index.html`): the five existing past events.
-- `/programs/` (`programs/index.html`): Expert on Campus, hackathons, and field trips.
-- `/archive/` (`archive/index.html`): Photo Archive with eight real photographs, concise titles/captions, and an optional lightbox.
-- `/past-members-messages/` (`past-members-messages/index.html`): the authentic message from Etedal Ereiqat (Lala), with an inert reusable card template for more real, approved messages.
+| Page | Live URL | Source |
+| --- | --- | --- |
+| Home | [/](https://innovationclub.online/) | [index.html](index.html) |
+| Our Team | [/team/](https://innovationclub.online/team/) | [team/index.html](team/index.html) |
+| Events | [/events/](https://innovationclub.online/events/) | [events/index.html](events/index.html) |
+| Programs | [/programs/](https://innovationclub.online/programs/) | [programs/index.html](programs/index.html) |
+| Photo Archive | [/archive/](https://innovationclub.online/archive/) | [archive/index.html](archive/index.html) |
+| Messages from Past Members | [/past-members-messages/](https://innovationclub.online/past-members-messages/) | [past-members-messages/index.html](past-members-messages/index.html) |
 
-## Clean URLs and compatibility
+## Website features
 
-GitHub Pages serves the `index.html` inside each directory. Keep the trailing slash in links: `/`, `/team/`, `/events/`, `/programs/`, `/archive/`, and `/past-members-messages/`. Internal page links and asset references start at the site root, so they work from every page directory on the existing custom domain. Canonical and Open Graph URLs use these clean routes.
+- Dark theme with Amber and Teal accents and an animated lightbulb on Home.
+- Responsive navigation, active-page indicators, and an Archive dropdown with a plus/minus indicator.
+- Founder and Past President in one featured section: two equal columns at 1024px and above, stacked below 1024px.
+- Current leadership, confirmed teams, new members, and former members on Our Team.
+- Five past events, three program formats, and eight real photographs in the Photo Archive.
+- A native-dialog photo lightbox with Close/Escape, focus restoration, and background scroll locking.
+- Keyboard focus styles, a skip link, and reduced-motion support. Without JavaScript, core content, navigation links, the native Archive disclosure, and static gallery remain available.
+- The authentic message from Etedal Ereiqat (Lala), preserved verbatim, with a reusable template for more approved messages.
 
-The old `team.html`, `events.html`, `programs.html`, `archive.html`, and `past-members-messages.html` files are lightweight compatibility redirects. They contain a canonical link, a meta refresh, a JavaScript `location.replace` that carries the query string and fragment to the clean route, and a normal fallback link. GitHub Pages serves these files with HTTP 200; they are HTML redirects, not server-side 301 redirects. Keep them for old bookmarks and event anchors. The homepage also conditionally redirects an explicit `/index.html` visit to `/`, preserving its query and fragment; visiting `/` does not redirect. Without JavaScript, `/index.html` still displays the homepage with `/` as its canonical URL.
+## Project structure
 
-## Structure
+```text
+index.html                         Home
+team/index.html                    Our Team
+events/index.html                  Events
+programs/index.html                Programs
+archive/index.html                 Photo Archive
+past-members-messages/index.html   Messages from Past Members
+css/styles.css                     Shared styles and responsive rules
+js/main.js                         Navigation, lightbox, and animation controls
+assets/
+  icons/favicon.svg
+  images/
+    brand/                         Original club logo
+    leadership/                    Original portraits and optimized/ variants
+    events/                        Event display images
+    archive/                       Archive display images
+    team/                          Group photos and supplied archive originals
+    originals/                     Preserved original club photographs
+docs/
+  membership-review.md             Current roster and identity decisions
+  release-review.md                Historical browser QA record
+team.html, events.html,
+programs.html, archive.html,
+past-members-messages.html         Legacy redirect pages
+.gitignore                         Excludes local test output
+CNAME                              Existing custom domain
+```
 
-- `css/styles.css`: shared design tokens, layouts, components, responsive rules, and reduced motion styles.
-- `js/main.js`: mobile navigation, click/touch/keyboard Archive disclosure, optional native-dialog photo lightbox with semantic photo buttons and background scroll locking, reveal effects, and original lightbulb motion controls.
-- `assets/images/brand/`: original club logo.
-- `assets/images/leadership/`: the four supplied original photographs; `optimized/` contains 320px and 640px versions.
-- `assets/images/archive/`: 640px and 1600px versions of the supplied Vivid Leadership Conference and Career Fair photos. Their originals remain in `assets/images/team/`.
-- `assets/images/events/` and `assets/images/team/`: responsive JPEG variants.
-- `assets/images/originals/`: preserved original photos, not referenced by the pages.
-- `assets/icons/favicon.svg`: bulb favicon; original logo PNG is a fallback.
-- `docs/membership-review.md`: all 28 current members, the full original-directory comparison, and name-matching decisions.
-- `CNAME`: existing custom domain; unchanged.
+## Clean URLs and older links
+
+GitHub Pages serves the `index.html` inside each page folder. Use trailing slashes in page links, such as `/team/`, and root-relative paths for shared files, such as `/css/styles.css` or `/assets/images/brand/logo.png`. Canonical and Open Graph URLs use the clean routes.
+
+The five legacy `.html` pages contain a canonical link, a meta refresh, a JavaScript `location.replace`, and a normal fallback link. They are HTML redirects served with HTTP 200, not server-side 301 redirects. With JavaScript, query strings and fragments are carried to the destination, for example `/events.html#passionate-innovators` to `/events/#passionate-innovators`.
+
+An explicit `/index.html` visit redirects to `/` through a conditional script. Visiting `/` does not redirect. Without JavaScript, `/index.html` still displays Home with `/` as its canonical URL. Keep these compatibility files for old bookmarks.
 
 ## Local preview
 
-Serve the repository root over local HTTP and follow the clean routes above. Opening files directly with `file://` is not supported because links and shared asset paths start at `/`. Google Fonts requires an internet connection; system font fallbacks are provided.
+Start a static HTTP server from the repository root. Opening pages through `file://` is not supported because navigation and asset paths start at `/`. Google Fonts needs an internet connection; the rest of the site uses local files.
 
-If Python is already installed, an optional local HTTP server can be started from this directory:
+If Python is already installed:
 
 ```powershell
 python -m http.server 8000 --bind 127.0.0.1
 ```
 
-Open http://127.0.0.1:8000/ and stop the server with Ctrl+C. No install or build command is required.
+If Node.js is already installed, this PowerShell alternative uses only its built-in modules:
 
-## Editing content
+```powershell
+@'
+const http = require('node:http');
+const fs = require('node:fs/promises');
+const path = require('node:path');
+const root = path.resolve(process.cwd());
+const types = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'text/javascript', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.png': 'image/png', '.svg': 'image/svg+xml' };
+http.createServer(async (req, res) => {
+  try {
+    const url = new URL(req.url, 'http://localhost');
+    const name = decodeURIComponent(url.pathname);
+    let file = path.resolve(root, '.' + name);
+    if (name.split('/').some(part => part.startsWith('.')) ||
+        (file !== root && !file.startsWith(root + path.sep))) {
+      res.writeHead(403).end(); return;
+    }
+    if ((await fs.stat(file)).isDirectory()) {
+      if (!name.endsWith('/')) {
+        res.writeHead(301, { Location: url.pathname + '/' + url.search }).end(); return;
+      }
+      file = path.join(file, 'index.html');
+    }
+    const body = await fs.readFile(file);
+    res.writeHead(200, { 'Content-Type': types[path.extname(file).toLowerCase()] || 'application/octet-stream' }).end(body);
+  } catch { res.writeHead(404).end('Not found'); }
+}).listen(8000, '127.0.0.1', () => console.log('http://127.0.0.1:8000/'));
+'@ | node
+```
 
-Keep core content in HTML so it remains available without JavaScript. Shared headers and footers are static markup on all six pages: update them together when changing navigation or contact links. Update the membership comparison when changing team membership. Do not infer team roles from a similar first name.
+Open **http://127.0.0.1:8000/** and follow the page links. Stop the server with **Ctrl+C**. Both examples bind only to your computer; no package install is needed.
 
-The original large images are retained. Responsive JPEG was used with the available local encoder; WebP/AVIF can be evaluated later without blocking local preview. The 1065px conference image has an accurate 1065w descriptor even though its large-variant filename ends in 1280.
+## Membership and public statistics
 
-The old 20-member board count and 1,500-member claim are not presented as current membership: the user confirmed 28 current members after explicitly adding Mahdi Alroomi. Hasan's former 20-member board is described only as historical context. Event facts and program descriptions come from the original website; exact dates and new positions were not invented.
+The directory currently contains **36 unique people**:
 
-## Public statistics and exact membership
+| Category | Count |
+| --- | --- |
+| Current members | 28: 2 Leadership, 16 other team members, 10 New Members |
+| Past Members | 6, including Amin Alsadi |
+| Founder | 1: Mohannad Awawdeh |
+| Past President | 1: Hasan Abuzaid |
 
-Home displays 25+ Current members, 5+ Operational teams, and 3 Core program formats, as requested. The exact current roster is 28; the directory lists only confirmed teams and does not invent a fifth team. There are 10 members with no confirmed team, 6 ordinary Past Members, a separate Past President, and a separate Founder. See docs/membership-review.md for the corrected identity and assignment decisions.
+Founder and Past President have their own featured cards and are excluded from ordinary Past Members. People without a confirmed team remain under Our New Members. Leadership profiles appear once; their team affiliations do not create duplicate team-list entries.
 
-## Leadership photographs
+Home intentionally displays **25+ Current members / 5+ Operational teams / 3 Core program formats**. These approximate public statistics do not replace the exact roster. Only four confirmed team groups are listed; do not invent another team to match the display.
 
-The real supplied photographs are connected to the existing cards in team/index.html:
+Use [docs/membership-review.md](docs/membership-review.md) for the full roster, aliases, confirmed assignments, and remaining assignment uncertainty. Update it and the totals here whenever membership changes. Do not infer identities or team assignments from similar names.
 
-| Person | Original photograph, retained | Display variants |
+## Editing pages and shared components
+
+Edit the directory-based source pages, not the legacy redirect files. Keep core content in HTML. Navigation and footer markup are repeated across all six source pages, so update them together when changing shared links or contact information.
+
+Use [css/styles.css](css/styles.css) for design changes and [js/main.js](js/main.js) for interactive behavior. Our Team references a versioned stylesheet URL to avoid mixing new HTML with old cached CSS; update that version when needed for related stylesheet changes.
+
+### Leadership photographs
+
+Originals are in `assets/images/leadership/`; display copies are in its `optimized/` folder.
+
+| Person | Original filename | Display filename prefix |
 | --- | --- | --- |
-| Mohannad Awawdeh — Founder | assets/images/leadership/Mohannad Awadeh.jpg | optimized/mohannad-awawdeh-320.jpg and -640.jpg |
-| Ali Al-Qudah — President | assets/images/leadership/Ali.jpg | optimized/ali-al-qudah-320.jpg and -640.jpg |
-| Noorshan Zaza — Vice President | assets/images/leadership/Noorshan Zaza.jpg | optimized/noorshan-zaza-320.jpg and -640.jpg |
-| Hasan Abuzaid — Past President | assets/images/leadership/Hasan_Abuzaid.jpg | optimized/hasan-abuzaid-320.jpg and -640.jpg |
+| Mohannad Awawdeh — Founder | `Mohannad Awadeh.jpg` | `mohannad-awawdeh-` |
+| Ali Al-Qudah — President | `Ali.jpg` | `ali-al-qudah-` |
+| Noorshan Zaza — Vice President | `Noorshan Zaza.jpg` | `noorshan-zaza-` |
+| Hasan Abuzaid — Past President | `Hasan_Abuzaid.jpg` | `hasan-abuzaid-` |
 
-Variant paths are relative to assets/images/leadership/. The user supplied the identity mapping; do not swap people based on a similar name or appearance. Resizing and JPEG compression preserve the full image, faces, colors, and proportions. No retouching, generative editing, or content cropping was applied. Responsive portrait frames use object-fit: contain. The existing adjacent names identify decorative portraits, so alt is empty within aria-hidden frames.
+Each prefix has 320px and 640px JPEG variants. Preserve originals, faces, proportions, and verified identity mappings. To replace a photo, update the matching `data-profile-photo` slot, `src`, `srcset`, actual dimensions, and `sizes`. Portrait frames use `object-fit: contain`; adjacent names identify the decorative images.
 
-To replace a portrait later, retain its original, optimize proportionally, update src/srcset and actual dimensions inside the matching data-profile-photo slot, and inspect it at phone and desktop widths.
+### Archive photographs
 
-## Adding archive photographs
+1. Use an approved real photo, retain its original, and reuse an existing display asset when possible.
+2. For a new image, place proportional JPEG variants in `assets/images/archive/`, with descriptive lowercase filenames and accurate dimensions. Do not invent event details or dates.
+3. Copy a `figure.archive-card` in [archive/index.html](archive/index.html). Give it a unique ID, factual title/caption, descriptive `alt`, and correct `src`, `srcset`, and `sizes`.
+4. Keep `data-lightbox`, `data-photo-src`, `data-photo-title`, and an optional concise `data-photo-caption` on `div.archive-photo-frame`. Use root-relative image paths, including the larger lightbox image.
+5. JavaScript upgrades the frame to a photo button. Without JavaScript or native-dialog support, it remains a static gallery. Do not add raw-image links.
+6. Add only selected previews to Home, linking to `/archive/#the-photo-id`.
 
-1. Use an approved real photograph and retain its original. Do not infer an event date or other details from file metadata.
-2. Reuse an existing optimized asset if the photo is already on Events or another page. For a new photo, use assets/images/archive/ with a descriptive lowercase filename. Produce proportionally resized versions, such as 640px and 1600px, without changing people or cropping faces.
-3. Copy one figure.archive-card from archive/index.html. Set a unique figure id, a factual title/caption, descriptive alt, actual image dimensions, srcset widths, and a sizes value that matches the gallery.
-4. The div.archive-photo-frame stores the larger image path in data-photo-src. Keep data-lightbox, data-photo-title, and an optional concise data-photo-caption. JavaScript upgrades the frame to a semantic button when native dialog is supported. Without JavaScript or dialog support, real images and captions remain a readable static gallery. Do not add raw-image anchors or visible file-opening links.
-5. Add only selected previews to Home. Preview links go to /archive/#the-photo-id; do not duplicate the entire gallery on Home or Our Team.
+Responsive JPEG variants and preserved originals are intentional. The conference variant ending in `1280.jpg` is actually 1065px wide and uses a `1065w` descriptor.
 
-The current archive has eight unique photos: Vivid Leadership Conference; Career Fair 2026; Passionate Innovators; EoC: Hisham Abubaker; Madaba Innovation Trail; Industrial Partnership Conference 2025; EoC: Eng. Salah Aloqabi; and one original club group photograph. Only the two newly supplied event photos need new archive assets; existing event and team variants are reused.
+### Authentic past-member messages
 
-## Adding real messages from past members
+In [past-members-messages/index.html](past-members-messages/index.html):
 
-The first authentic message is from Etedal Ereiqat (Lala), a Past Member. Its supplied wording, punctuation, emojis, capitalization, and three paragraphs are preserved exactly. No photo, team, year, or date has been inferred. The template in past-members-messages/index.html is inert and has no names, quotes, or made-up text. No form, account, backend, database, or CMS is used.
+1. Obtain the member's real message and permission to publish it. Verify any optional role, photo, or date separately.
+2. Copy the article from `template#past-member-message-template` into `div#member-messages`.
+3. Fill `h3[data-message-name]` and the paragraphs inside `blockquote[data-message-text]`. Preserve every character, punctuation mark, emoji, capitalization, and supplied paragraph break. Escape HTML-sensitive characters without changing the rendered text.
+4. Keep optional photo, role, and date fields hidden until verified. For a supplied image, provide its real path, dimensions, and appropriate alternative text. For a verified date, set the correct ISO `datetime`.
+5. Never publish an unfilled card or invent a message. Keep the inert template for future additions. No submission form or backend is used.
 
-1. Obtain the person's real message and approval to publish it, together with the name they want shown. Verify any previous role, photo, or date separately; omit unknown fields.
-2. In past-members-messages/index.html, copy the article inside template#past-member-message-template into div#member-messages. It becomes ordinary static HTML; no JavaScript data rendering is needed.
-3. Fill h3[data-message-name] with the real name and the paragraphs inside blockquote[data-message-text] with the approved message. Preserve every character and the supplied paragraph breaks exactly; escape HTML-sensitive characters where necessary. Do not rewrite, shorten, or add quotation marks.
-4. Optional fields remain hidden until provided. For a verified previous role, fill p[data-message-role] and remove hidden. For an approved real portrait, add a valid src, actual width/height, and remove hidden from img[data-message-photo]. The adjacent name identifies the decorative photo, so alt can remain empty.
-5. For a verified date, fill time[data-message-date], set datetime to the real ISO date, and remove hidden. Do not use a guessed date.
-6. The empty state has been removed now that a real message is present. Keep the permanent section heading, message grid, and reusable template. Never publish the unfilled card as visible content.
+Etedal Ereiqat and Lala are one person. Her card displays **Etedal Ereiqat (Lala)**; adding her message does not create another directory profile.
 
-## Clean-URL verification
+## Verification and release
 
-The clean-URL migration is verified by static HTML/path/anchor checks and ordinary HTTP requests. No browser automation, visual browser testing, screenshots, or test-artifact files are generated for this migration. CSS, JavaScript, images, approved page text, membership data, and the authentic member message remain unchanged.
+Before publishing, check all six clean routes, internal anchors, asset references, legacy redirect targets, and canonical URLs. Run available static checks without adding dependencies:
 
-## Local review checklist
+```powershell
+node --check js/main.js
+git diff --check
+git status --short
+```
 
-Historical testing before the clean-URL migration: real Brave browser testing through Playwright MCP covered all six pages at 320x720, 375x812, 390x844, 430x932, 768x1024, 1280x800, and 1920x1080. Local screenshots and browser output stay in the ignored `.playwright-mcp/` folder. See `docs/release-review.md` for the final checks and their limits. The steps below are also useful when reviewing later edits.
+For visual or interaction changes, review mobile and desktop layouts, portraits, navigation, keyboard focus, reduced motion, and Lightbox Close/Escape. Past browser checks are recorded in [docs/release-review.md](docs/release-review.md); that file is a historical snapshot, not the current membership source. The clean-URL migration and latest membership addition were verified with static checks and ordinary HTTP requests, without new browser automation or screenshots.
 
-1. Serve the repository root locally and visit /, /team/, /events/, /programs/, /archive/, and /past-members-messages/; test header and footer links and active page indicators.
-2. At 1280px and 1920px widths, open Archive by click and by Enter/Space. It opens instantly, without scaling, sliding, or rotation. Confirm aria-expanded tracks the native details state and aria-controls points to archive-menu. Tab into both links. ArrowDown/ArrowUp on its summary focuses the first/last link. Escape closes the dropdown and returns focus to Archive. Click outside and move focus outside to close it.
-3. At 320px, 360px, 375px, 390px, 430px, and 768px widths, open the main navigation, open Archive, and follow each link. Escape closes Archive first and the mobile list second. Expand the list in landscape and confirm it scrolls within the viewport. Test resizing across the 900/901px navigation breakpoint, including while focus is inside Archive. Focus should move to Archive on desktop or the hamburger on mobile when the submenu closes.
-4. Inspect all four named portraits at 390px and 1280px. Faces and whole photographs must remain visible and roles unchanged. Check eight gallery cards and the full-width amber active-navigation border at 320px, 360px, 375px, 390px, 430px, 768px, 1024px, 1280px, and 1920px for clipping or horizontal overflow. Archive must be active on both archive-related pages.
-5. At 768px and 1024px, verify Programs and the Home event preview stack with full, uncropped photos. At 1280px the existing desktop columns remain, with complete photographs fitted within their own reserved ratios. Check image space before loading, font-size zoom, long team names, FAQ touch areas, and footer links.
-6. Open a gallery photo by click/touch and Enter. Check the matching title, caption, and image. Tab stays inside the native dialog; Escape and Close dismiss it and restore focus to the same photo button. Background scrolling is locked while open; closing restores its previous scroll position and inline styles. No visible file-opening link or raw-image anchor should remain.
-7. Disable JavaScript and reload. Main links and the native Archive disclosure still work. Gallery photos and captions remain visible as static content; no inert photo buttons, raw-image links, or lightbox controls are visible.
-8. Confirm the messages page displays Etedal Ereiqat (Lala)'s authentic message exactly, with three paragraphs, both cherry emojis and the white heart. No unfilled template or fabricated message should be visible. Check the console, failed network requests, reduced motion, Home statistics 25+/5+/3, and the unchanged membership roster.
+GitHub Pages publishes from **`main`, repository root `/`**, at the existing custom domain. Normally develop on `development` and use a reviewed Pull Request. Direct pushes to `main` require explicit authorization. Fetch the latest remote state, preserve unrelated work, test, review staged files, and use a normal push. Never force-push or bypass branch protection.
 
+Keep `CNAME` and domain settings unchanged. After a release, confirm that the matching GitHub Pages deployment succeeded, then check the live routes and assets; a successful push alone does not prove the site has updated.
 
-- Open all six pages, including direct page URLs and event/program section links.
-- Check phone, tablet, desktop, zoom, keyboard navigation, and reduced motion.
-- Disable JavaScript: navigation, names, numbers, and content must remain visible.
-- Inspect image quality, especially group photographs.
-- Verify all local asset paths and the 28-current-member partition.
-
-## Git and hosting
-
-Develop and test on `development`. Release through a reviewed Pull Request into `main`, after checking the latest remote branches, intended files, repository checks, approvals, and merge conflicts. Never force-push or bypass branch protection. Verify the actual GitHub Pages configuration and successful deployment before checking the live custom domain; a merge alone does not confirm publication. Preserve `CNAME` and the custom domain.
-
-`.gitignore` excludes `.playwright-mcp/`, `playwright-report/`, and `test-results/`. Keep screenshots, local release helpers, logs, and generated browser output out of commits. Website images under `assets/images/` remain tracked. Original photographs are deliberately retained alongside the display variants; gallery cards reuse assets rather than creating duplicate event entries.
+[.gitignore](.gitignore) excludes `.playwright-mcp/`, `playwright-report/`, and `test-results/`. Keep local screenshots, browser logs, helpers, and test output out of commits. Do not ignore production images under `assets/images/`.
