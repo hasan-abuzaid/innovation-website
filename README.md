@@ -9,7 +9,7 @@ A six-page static website for Innovation Club at German Jordanian University. Bu
 - `events.html`: the five existing past events.
 - `programs.html`: Expert on Campus, hackathons, and field trips.
 - `archive.html`: Photo Archive with eight real photographs, concise titles/captions, and an optional lightbox.
-- `past-members-messages.html`: an honest empty state and an inert reusable card template for real, approved messages.
+- `past-members-messages.html`: the authentic message from Etedal Ereiqat (Lala), with an inert reusable card template for more real, approved messages.
 
 ## Structure
 
@@ -75,14 +75,14 @@ The current archive has eight unique photos: Vivid Leadership Conference; Career
 
 ## Adding real messages from past members
 
-No messages have been supplied, so no testimonial is displayed. The template in past-members-messages.html is inert and has no names, quotes, or made-up text. No form, account, backend, database, or CMS is used.
+The first authentic message is from Etedal Ereiqat (Lala), a Past Member. Its supplied wording, punctuation, emojis, capitalization, and three paragraphs are preserved exactly. No photo, team, year, or date has been inferred. The template in past-members-messages.html is inert and has no names, quotes, or made-up text. No form, account, backend, database, or CMS is used.
 
 1. Obtain the person's real message and approval to publish it, together with the name they want shown. Verify any previous role, photo, or date separately; omit unknown fields.
 2. In past-members-messages.html, copy the article inside template#past-member-message-template into div#member-messages. It becomes ordinary static HTML; no JavaScript data rendering is needed.
-3. Fill h3[data-message-name] with the real name and p[data-message-text] with the approved message. Preserve its meaning; escape HTML-sensitive characters. Split a longer message into real paragraphs as needed.
+3. Fill h3[data-message-name] with the real name and the paragraphs inside blockquote[data-message-text] with the approved message. Preserve every character and the supplied paragraph breaks exactly; escape HTML-sensitive characters where necessary. Do not rewrite, shorten, or add quotation marks.
 4. Optional fields remain hidden until provided. For a verified previous role, fill p[data-message-role] and remove hidden. For an approved real portrait, add a valid src, actual width/height, and remove hidden from img[data-message-photo]. The adjacent name identifies the decorative photo, so alt can remain empty.
 5. For a verified date, fill time[data-message-date], set datetime to the real ISO date, and remove hidden. Do not use a guessed date.
-6. Once the first real message is present, remove div.messages-empty. Keep the permanent section heading, message grid, and reusable template. Never publish the unfilled card as visible content.
+6. The empty state has been removed now that a real message is present. Keep the permanent section heading, message grid, and reusable template. Never publish the unfilled card as visible content.
 
 ## Local review checklist
 
@@ -95,7 +95,7 @@ Real Brave browser testing through Playwright MCP covered all six pages at 320x7
 5. At 768px and 1024px, verify Programs and the Home event preview stack with full, uncropped photos. At 1280px the existing desktop columns remain, with complete photographs fitted within their own reserved ratios. Check image space before loading, font-size zoom, long team names, FAQ touch areas, and footer links.
 6. Open a gallery photo by click/touch and Enter. Check the matching title, caption, and image. Tab stays inside the native dialog; Escape and Close dismiss it and restore focus to the same photo button. Background scrolling is locked while open; closing restores its previous scroll position and inline styles. No visible file-opening link or raw-image anchor should remain.
 7. Disable JavaScript and reload. Main links and the native Archive disclosure still work. Gallery photos and captions remain visible as static content; no inert photo buttons, raw-image links, or lightbox controls are visible.
-8. Confirm the messages page displays only the empty state, not a fabricated message. Check the console, failed network requests, reduced motion, Home statistics 25+/5+/3, and the unchanged membership roster.
+8. Confirm the messages page displays Etedal Ereiqat (Lala)'s authentic message exactly, with three paragraphs, both cherry emojis and the white heart. No unfilled template or fabricated message should be visible. Check the console, failed network requests, reduced motion, Home statistics 25+/5+/3, and the unchanged membership roster.
 
 
 - Open all six pages, including direct page URLs and event/program section links.

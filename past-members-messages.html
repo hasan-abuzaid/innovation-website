@@ -6,13 +6,13 @@
     <title>
       Messages from Past Members · Innovation Club · GJU
     </title>
-    <meta name="description" content="A place for former Innovation Club members to share real memories and advice. Messages will be added when shared and approved.">
+    <meta name="description" content="Read real memories and advice shared by former Innovation Club members.">
     <meta name="theme-color" content="#060a10">
     <link rel="canonical" href="https://innovationclub.online/past-members-messages.html">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Innovation Club · GJU">
     <meta property="og:title" content="Messages from Past Members · Innovation Club">
-    <meta property="og:description" content="A place for former Innovation Club members to share real memories and advice. Messages will be added when shared and approved.">
+    <meta property="og:description" content="Read real memories and advice shared by former Innovation Club members.">
     <meta property="og:url" content="https://innovationclub.online/past-members-messages.html">
     <meta property="og:image" content="https://innovationclub.online/assets/images/brand/logo.png">
     <meta property="og:image:alt" content="Innovation Club logo">
@@ -117,18 +117,22 @@
           <h2 class="sr-only" id="messages-title">
             Member messages
           </h2>
-          <div class="messages-empty">
-            <svg viewBox="0 0 56 56" fill="none" aria-hidden="true">
-              <path d="M12 9h32a6 6 0 0 1 6 6v22a6 6 0 0 1-6 6H25L12 51v-8a6 6 0 0 1-6-6V15a6 6 0 0 1 6-6Z" stroke="currentColor" stroke-width="2"/>
-              <path d="M17 22h22M17 30h15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-            <h2 id="messages-empty-title">
-              A place for real memories.
-            </h2>
-            <p>
-              Messages will be added here when former members share their words and approve them for the website. For now, explore the photos and people who are part of our club’s story.
-            </p>
-            <div class="button-row">
+          <div class="message-grid" id="member-messages">
+            <article class="message-card" aria-labelledby="etedal-message-name">
+              <header class="message-author">
+                <div>
+                  <h3 id="etedal-message-name" data-message-name>Etedal Ereiqat (Lala)</h3>
+                  <p class="message-role" data-message-role>Past Member</p>
+                </div>
+              </header>
+              <blockquote data-message-text>
+                <p>Hi 🍒</p>
+                <p>It’s Lala! I am so grateful to have been part of the Innovation Club for so many years. It has been such a meaningful part of my university journey, giving me the chance to grow, learn, meet inspiring people, and create unforgettable memories.</p>
+                <p>I am thankful for every experience, every opportunity, and every person who made this journey special. I will always appreciate the memories, the friendships, and everything this club has taught me. Sending lots of love to everyone who makes the Innovation Club feel like a second home🍒🤍</p>
+              </blockquote>
+            </article>
+          </div>
+          <div class="button-row messages-actions">
               <a class="button button-primary" href="archive.html">
                 Explore the Photo Archive
                 <span aria-hidden="true">
@@ -138,12 +142,9 @@
               <a class="button button-secondary" href="team.html#past-members">
                 Meet our past members
               </a>
-            </div>
-          </div>
-          <div class="message-grid" id="member-messages">
           </div>
           <!-- Inert reusable structure only. Add real, approved text before publishing a card.
-             Copy an article into #member-messages; remove the empty state after the first real message.
+             Copy an article into #member-messages; preserve its original words and paragraph breaks.
              Unhide optional role, date, or photograph only when verified and supplied. -->
           <template id="past-member-message-template">
             <article class="message-card">
@@ -156,8 +157,8 @@
                   </p>
                 </div>
               </header>
-              <blockquote>
-                <p data-message-text>
+              <blockquote data-message-text>
+                <p>
                 </p>
               </blockquote>
               <time class="message-date" data-message-date hidden>

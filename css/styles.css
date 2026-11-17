@@ -224,12 +224,15 @@ dd { margin: 0; color: var(--text); }
 .messages-empty h2 { font-size: clamp(1.8rem, 4vw, 2.7rem); }
 .messages-empty p { max-width: 60ch; margin: 1.3rem 0 2rem; }
 .message-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-.message-card { min-width: 0; padding: 2rem; background: var(--surface); border: 1px solid var(--border); border-top-color: var(--amber); border-radius: var(--radius); }
+.message-card { min-width: 0; padding: clamp(1.4rem, 4vw, 2rem); background: var(--surface); border: 1px solid var(--border); border-top-color: var(--amber); border-radius: var(--radius); }
+.message-card:only-child { grid-column: 1 / -1; width: 100%; max-width: 850px; justify-self: center; }
+.messages-actions { max-width: 850px; margin: 2rem auto 0; }
 .message-author { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
 .message-author img { width: 64px; height: 80px; object-fit: contain; border-radius: 8px; }
 .message-author h3 { font-size: 1.2rem; }
 .message-role, .message-date { color: var(--muted); font-size: .8rem; }
 .message-card blockquote { margin: 0; color: var(--text); line-height: 1.85; overflow-wrap: anywhere; }
+.message-card blockquote p + p { margin-top: 1rem; }
 .message-date { display: block; margin-top: 1.5rem; }
 
 /* Events and programs keep their original content, on dedicated pages. */
