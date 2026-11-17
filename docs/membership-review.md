@@ -4,7 +4,9 @@ The original user-supplied roster contained 27 current members. The latest expli
 
 ## Current totals
 
-Final browser verification on 2026-11-18 confirmed the rendered directory: 28 unique current members (2 Leadership, 16 team-list members, and 10 New Members), 5 ordinary Past Members, 1 separate Founder, and 1 separate Past President. Zaid Saleh remains in Public Relations. Etedal Ereiqat appears once in Past Members, alongside Dima Alsaheb. No membership assignments changed during the final portrait and image-layout fixes.
+Earlier browser verification on 2026-11-18 confirmed the rendered directory: 28 unique current members (2 Leadership, 16 team-list members, and 10 New Members), 5 ordinary Past Members, 1 separate Founder, and 1 separate Past President. Zaid Saleh remains in Public Relations. Etedal Ereiqat appears once in Past Members, alongside Dima Alsaheb. No membership assignments changed during the final portrait and image-layout fixes.
+
+The latest explicit user update adds Amin Alsadi to Past Members. The current totals below include him: 6 ordinary Past Members and 36 unique people overall. Current membership remains 28. This addition was checked statically; no new browser verification is claimed.
 
 - Leadership: 2, displayed once each.
 - Current people in team lists: 16.
@@ -12,9 +14,9 @@ Final browser verification on 2026-11-18 confirmed the rendered directory: 28 un
 - Total current membership: **28**.
 - Founder: 1, in a separate featured section.
 - Past President: 1, in a separate section.
-- Ordinary Past Members: **5**.
-- Former members including the Past President: 6; the Founder remains a separate category.
-- Unique people on Our Team: **35**.
+- Ordinary Past Members: **6**.
+- Former members including the Past President: 7; the Founder remains a separate category.
+- Unique people on Our Team: **36**.
 
 ## Public homepage statistics
 
@@ -114,10 +116,13 @@ No team or position is inferred for these 10 members.
 - Ahmad Irsheid
 - Sara Ismail
 - Abdallah Shanaah
+- Amin Alsadi
 
 Dima Alsaheb remains a former member, not a new member. Mahdi Alroomi is no longer in Past Members.
 
 ## Corrected identity and team decisions
+
+- Amin Alsadi is a confirmed Past Member by explicit user instruction. His name appears once in the Past Members list; no team, position, photo, or personal message is inferred.
 
 - **Etedal Ereiqat** is the official name of the one former member previously represented by Etidal Eriqat and LALA. Both older labels are aliases only, not separate identities or membership records. The website displays one profile under the official name.
 - Ahmad Irsheid / Ahmad Irshaid remains one former member.

@@ -52,7 +52,7 @@ The old 20-member board count and 1,500-member claim are not presented as curren
 
 ## Public statistics and exact membership
 
-Home displays 25+ Current members, 5+ Operational teams, and 3 Core program formats, as requested. The exact current roster is 28; the directory lists only confirmed teams and does not invent a fifth team. There are 10 members with no confirmed team, 5 ordinary Past Members, a separate Past President, and a separate Founder. See docs/membership-review.md for the corrected identity and assignment decisions.
+Home displays 25+ Current members, 5+ Operational teams, and 3 Core program formats, as requested. The exact current roster is 28; the directory lists only confirmed teams and does not invent a fifth team. There are 10 members with no confirmed team, 6 ordinary Past Members, a separate Past President, and a separate Founder. See docs/membership-review.md for the corrected identity and assignment decisions.
 
 ## Leadership photographs
 
